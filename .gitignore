@@ -1,0 +1,5 @@
+# Ignore the .github directory
+.github/
+
+# Ignore the todo files
+todo.txt

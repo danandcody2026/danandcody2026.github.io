@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cody & Danny Wedding</title>
+    <!-- We're using Tailwind CSS from a CDN for modern, responsive styling. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using two fonts for a classic look, similar to your image. -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=Radley&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/yurt.png">
+</head>
+<body class="bg-[#FDFAF3]">
+    <div class="main-container px-4 md:px-6 lg:px-8 text-center py-10">
+        <!-- Yurt image above names -->
+        <div class="flex justify-center mb-4">
+            <img src="assets/yurt.png" alt="Yurt icon" class="yurt-icon" />
+        </div>
+        <!-- Couple's names -->
+        <h1 class="header-font text-5xl md:text-6xl font-normal tracking-wide mb-4">
+            CODY & DANNY
+        </h1>
+
+        <!-- Event details -->
+        <div class="event-details-font text-sm md:text-base font-medium tracking-wider uppercase mb-1">
+            13<sup>th</sup> JUNE 2026 • TREMEER FARM, FOWEY
+        </div>
+        
+        <!-- Countdown section - Placeholder text for now -->
+        <div id="countdown" class="countdown-blue text-sm md:text-base font-medium tracking-wider mb-12">
+            Loading countdown...
+        </div>
+
+        <!-- Navigation bar with hover effect -->
+        <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-12 pb-2">
+            <a href="#main-invite-image" class="nav-link nav-link-blue text-sm md:text-base font-medium">Save the date</a>
+            <a href="#plan" class="nav-link nav-link-blue text-sm md:text-base font-medium">What's the plan?</a>
+            <!-- <a href="#schedule" class="nav-link nav-link-blue text-sm md:text-base font-medium">Schedule</a> -->
+        </nav>
+        
+        <!-- Main Image Section -->
+        <div id="main-invite-image" class="w-full flex justify-center">
+            <img src="assets/invite.jpg" alt="An invite photo" class="invite-image rounded-lg">
+        </div>
+
+        <!-- What's the plan section -->
+        <section id="plan" class="plan-section py-16 px-2 md:px-0">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="plan-heading text-xl md:text-2xl mb-3 tracking-wider">WHAT'S THE PLAN?</h2>
+                <p class="plan-intro text-base md:text-base mb-6 tracking-wide">If we actually knew the plan, we'd tell you... but for now, here's a rough idea of what to expect:</p>
+                <div class="plan-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="plan-panel p-8 border border-gray-300 flex flex-col items-center text-center">
+                            <img src="assets/location.png" alt="Location icon" class="panel-icon mb-3" />
+                            <h3 class="plan-subheading text-2xl italic mb-4">Location</h3>
+                        <p class="plan-text mb-4">We'll be celebrating at <a href="https://www.yurtscornwall.com/" target="_blank" rel="noopener" class="underline hover:text-blue-700">Tremeer Farm</a>, just outside of Fowey, Cornwall. It's a gorgeous spot tucked away in the countryside, complete with farm animals, a wood-fired hothub, and even a sauna! It's also close to two of Cornwall's most picturesque beaches: <a href="https://www.google.com/maps/place/Lantic+Bay/@50.3258977,-4.6294547,14z/data=!3m1!4b1!4m6!3m5!1s0x486b6145bc7676e3:0x49691d063f83b509!8m2!3d50.3258726!4d-4.6088551!16s%2Fg%2F11cn8x1d7x?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="underline hover:text-blue-700">Lantic Bay</a> and <a href="https://www.google.com/maps/place/Lansallos+Beach/@50.3320127,-4.5988471,14z/data=!3m1!4b1!4m6!3m5!1s0x486b6179b6629df9:0x60614bde97394ab5!8m2!3d50.3319877!4d-4.5782475!16s%2Fg%2F11fq91t_8g?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="underline hover:text-blue-700">Lansallos Cove.</a></p>
+                        <a href="https://www.google.com/maps/place/Tremeer+Farm+-+Yurt+Glamping+Holidays+in+Cornwall,+UK/@50.3475584,-4.5845059,17z/data=!3m1!4b1!4m9!3m8!1s0x486b63d3c7501265:0x4c4d9c52e5a04d1a!5m2!4m1!1i2!8m2!3d50.347555!4d-4.581931!16s%2Fg%2F1ts3f0zk?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="venue-directions-btn inline-block mt-2 px-4 py-2 text-sm rounded border border-[#223c6c] text-[#223c6c] hover:bg-[#223c6c] hover:text-white transition">Get directions</a>
+                    </div>
+                    <div class="plan-panel p-8 border border-gray-300 flex flex-col items-center text-center">
+                            <img src="assets/weekend.png" alt="The Weekend icon" class="panel-icon mb-3" />
+                            <h3 class="plan-subheading text-2xl italic mb-4">The Weekend</h3>
+                        <p class="plan-text mb-4">The main celebration will take place on the Saturday, but we'll be at Tremeer from Friday afternoon to Monday morning. Friday evening will be all hands on deck with setting up, and Sunday will likely involve a Cornish sea swim to cure the hangovers... You're all welcome to join us for as much or as little of that as you like!</p>
+                    </div>
+                    <div class="plan-panel p-8 border border-gray-300 flex flex-col items-center text-center">
+                            <img src="assets/accomodation.png" alt="Accommodation icon" class="panel-icon mb-3" />
+                            <h3 class="plan-subheading text-2xl italic mb-4">Accommodation</h3>
+                        <p class="plan-text mb-4">The venue has some limited camping space on-site, and there are also plenty of other campsites and Airbnbs nearby. For those who don't fancy camping, we will share some accommodation suggestions soon.</p>
+                    </div>
+                </div>
+                <p class="plan-intro text-base md:text-base mb-6 mt-10 tracking-wide">
+                    We're saving paper on invites and instead will be adding all the details here as the plans come together. Please pop your names and an email below so we can update you with all the relevant information nearer the time (no spam, we promise!). It would also be helpful to know if you fancy camping on-site or not:</p>
+            <div class="max-w-xl mx-auto text-center">
+                <div class="row mb-4">
+                    <div class="col-md-12" id="alert-wrapper"></div>
+                </div>
+                <form id="findoutmore-form" class="find-more-form flex flex-col items-center gap-4">
+                    <!-- First row: Guest names, Email -->
+                    <div class="flex flex-col md:flex-row w-full justify-center gap-3">
+                        <input type="text" name="names" class="find-more-input flex-1 p-3 rounded border border-gray-300 min-w-[120px]" placeholder="Names" required>
+                        <input type="email" name="email" class="find-more-input flex-1 p-3 rounded border border-gray-300 min-w-[120px]" placeholder="Contact email for your group" required>
+                    </div>
+                    <!-- Second row: What nights? Multi-select -->
+                    <!-- Tent/van onsite question -->
+                    <div class="flex flex-col md:flex-row w-full md:w-4/3 items-start md:items-center gap-1">
+                        <label class="block font-medium text-[#223c6c] text-left pr-2 md:whitespace-nowrap md:question-nowrap-label">Would you like to stay in a tent or van onsite if possible?</label>
+                        <div class="flex flex-row gap-2 md:ml-auto text-weddingblue mt-2 md:mt-0">
+                            <label class="inline-flex items-center text-weddingblue">
+                                <input type="radio" name="camping" value="Yes" class="accent-[#223c6c] mr-1" required id="camping-yes"> Yes
+                            </label>
+                            <label class="inline-flex items-center text-weddingblue">
+                                <input type="radio" name="camping" value="No" class="accent-[#223c6c] mr-1" id="camping-no"> No
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Which nights question, hidden by default -->
+                                <div id="nights-question-row" class="flex flex-col md:flex-row w-full md:w-4/3 items-start md:items-center gap-1 mt-2 hidden-by-default">
+                                    <label class="block font-medium text-[#223c6c] text-left pr-2 md:whitespace-nowrap md:w-2/3">Which nights would you like to stay?</label>
+                                    <div class="flex flex-row gap-2 md:ml-auto text-weddingblue mt-2 md:mt-0">
+                            <label class="inline-flex items-center text-weddingblue">
+                                <input type="checkbox" name="nights" value="Friday" class="accent-[#223c6c] mr-1"> Friday
+                            </label>
+                            <label class="inline-flex items-center text-weddingblue">
+                                <input type="checkbox" name="nights" value="Saturday" class="accent-[#223c6c] mr-1"> Saturday
+                            </label>
+                            <label class="inline-flex items-center text-weddingblue">
+                                <input type="checkbox" name="nights" value="Sunday" class="accent-[#223c6c] mr-1"> Sunday
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="find-more-btn mt-2 px-6 py-3 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Submit form</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Schedule section -->
+        <!-- <section id="schedule" class="schedule-section py-12 px-2 md:px-0">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="schedule-block py-8">
+                    <h3 class="schedule-heading text-xl md:text-2xl font-bold mb-3">FRIDAY 12TH JUNE: Arrival & Welcome</h3>
+                    <p class="schedule-text text-base md:text-base">Arrive at Tremeer Farm from 4pm. Settle in, explore the grounds, and then get to work preparing and decorating! Rewarded with pizza, sauna and hot tub.</p>
+                </div>
+                    <div class="wavy-divider my-4">
+                        <svg class="wavy-svg" viewBox="0 0 400 20" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M0 10 Q 50 0, 100 10 T 200 10 T 300 10 T 400 10" stroke="#223c6c" stroke-width="1" fill="none"/>
+                        </svg>
+                    </div>
+                <div class="schedule-block py-8">
+                    <h3 class="schedule-heading text-xl md:text-2xl font-bold mb-3">SATURDAY 13th JUNE: The Big Day</h3>
+                    <p class="schedule-text text-base md:text-base">Ceremony in the morning, followed by food, drinks, music, and dancing into the night. More details to follow!</p>
+                </div>
+                    <div class="wavy-divider my-4">
+                        <svg class="wavy-svg" viewBox="0 0 400 20" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M0 10 Q 50 0, 100 10 T 200 10 T 300 10 T 400 10" stroke="#223c6c" stroke-width="1" fill="none"/>
+                        </svg>
+                    </div>
+                <div class="schedule-block py-8">
+                    <h3 class="schedule-heading text-xl md:text-2xl font-bold mb-3">SUNDAY 14TH JUNE: Chill & Explore</h3>
+                    <p class="schedule-text text-base md:text-base">Enjoy a laid-back day with friends and family. Take a dip in the sea, go for a walk, or just relax on the farm before heading home on Monday.</p>
+                </div>
+            </div>
+        </section> -->
+        
+        <!-- Scroll to top button -->
+        <button id="scrollToTopBtn" aria-label="Scroll to top" class="scroll-to-top-btn flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-lg border border-gray-300 hover:bg-gray-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="11" stroke="#bbb" stroke-width="2" fill="none"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V8m0 0l-4 4m4-4l4 4" />
+            </svg>
+        </button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

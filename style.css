@@ -1,0 +1,199 @@
+/* Wedding blue text color for form options */
+.text-weddingblue {
+    color: #223c6c;
+}
+/* Prevent line break for the tent/van onsite question label */
+.question-nowrap-label {
+    min-width: 260px;
+}
+/* Hide by default for conditional form rows */
+.hidden-by-default {
+    display: none;
+}
+.wavy-divider {
+    width: 100%;
+}
+.wavy-svg {
+    width: 100%;
+    height: 20px;
+    display: block;
+}
+/* Schedule section styles */
+.schedule-section {
+    background-color: #FDFAF3;
+}
+.schedule-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    color: #223c6c;
+    letter-spacing: 0.02em;
+}
+.schedule-text {
+    color: #223c6c;
+    font-family: 'Radley', serif;
+    font-size: 1.1rem;
+}
+.schedule-divider {
+    border: none;
+    border-top: 1px solid #223c6c;
+    margin: 0;
+}
+.panel-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+/* Custom styles that apply globally or to specific classes not covered by Tailwind. */
+.invite-image {
+    max-width: 500px; /* Adjust this value as needed */
+    width: 100%;
+    height: auto;
+    display: block;
+}
+body {
+    font-family: 'Radley', serif;
+    background-color: #F8F5F2; /* Soft, light background color */
+}
+.header-font, .event-details-font, .countdown-blue {
+    font-family: 'Didot', 'Didot LP', serif;
+    color: #223c6c;
+}
+.nav-link, .nav-link-blue {
+    font-family: 'GFS Didot', serif;
+    color: #223c6c;
+}
+.header-font {
+    font-family: 'Cormorant Garamond', serif;
+}
+.main-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.nav-link {
+    position: relative;
+    padding-bottom: 0.5rem; /* For the underline effect */
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: #223c6c;
+    transition: width 0.3s ease-in-out;
+}
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+.countdown-blue {
+    color: #223c6c;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+.nav-link-blue {
+    color: #223c6c;
+}
+
+/* What's the plan section styles */
+.plan-section {
+    background-color: #FDFAF3;
+}
+.plan-heading {
+    font-family: 'GFS Didot', serif;
+    color: #223c6c;
+}
+.plan-intro {
+    color: #223c6c;
+}
+.plan-grid {
+    width: 100%;
+}
+.plan-panel {
+    background: #FDFAF3;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.07), 0 1.5px 4px 0 rgba(0,0,0,0.04);
+    border: 1px solid #d1d5db;
+}
+.plan-subheading {
+    font-family: 'GFS Didot', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: #223c6c;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+.plan-text {
+    color: #444;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.plan-text a:hover {
+    color: #223c6c;
+}
+
+/* Find out more section styles */
+.find-more-section {
+    background-color: #FDFAF3;
+}
+.find-more-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    color: #223c6c;
+}
+.find-more-intro {
+    color: #223c6c;
+}
+.find-more-input {
+    font-size: 1rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+    transition: border 0.2s;
+}
+.find-more-input:focus {
+    border-color: #888;
+    outline: none;
+}
+.find-more-btn {
+    font-size: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
+}
+
+/* Scroll to top button styles */
+.scroll-to-top-btn {
+    position: static !important;
+    margin: 0rem auto 0rem auto;
+    display: flex;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10), 0 1.5px 4px 0 rgba(0,0,0,0.06);
+    cursor: pointer;
+    opacity: 0.85;
+}
+.scroll-to-top-btn:hover {
+    opacity: 1;
+}
+.yurt-icon {
+    height: 120px;
+    width: auto;
+}
+.venue-directions-btn {
+    font-family: 'GFS Didot', serif;
+    font-size: 1rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid #223c6c;
+    color: #223c6c;
+    background: #fff;
+    transition: background 0.2s, color 0.2s;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+}
+.venue-directions-btn:hover {
+    background: #223c6c;
+    color: #fff;
+}
