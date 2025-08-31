@@ -37,7 +37,7 @@ $('#findoutmore-form').on('submit', function (e) {
 
     $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-    $.post('https://script.google.com/macros/s/AKfycbzol9o05jCpTn-PN-_Z2bHi9pDTdRs7bapN3syOh-MHzo3MM1TR_hMETgygC8TCqypH/exec', data)
+    $.post('https://script.google.com/macros/s/AKfycbwD7uqdt9MTCb2fqefu6uRc9_ka4QneKG1G7lQEAYtgPtNRCfT1nGAHDGbQChlzoPQSAg/exec', data)
             .done(function (data) {
                 console.log(data);
                 if (data.result === "error") {
