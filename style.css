@@ -2,6 +2,62 @@
 .text-weddingblue {
     color: #223c6c;
 }
+
+/********************** Global Invite Code Overlay **********************/
+.invite-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #FDFAF3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.invite-overlay.hidden {
+    display: none;
+}
+.invite-overlay-box {
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    padding: 2rem;
+}
+
+/********************** Invite Badge (top-right) **********************/
+.invite-badge {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    padding: 6px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    font-family: 'GFS Didot', serif;
+    font-size: 0.85rem;
+    color: #223c6c;
+}
+.invite-badge.hidden {
+    display: none;
+}
+.invite-badge-code {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+.invite-badge-logout {
+    color: #888;
+    text-decoration: underline;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.invite-badge-logout:hover {
+    color: #223c6c;
+}
+
 /* Prevent line break for the tent/van onsite question label */
 .question-nowrap-label {
     min-width: 260px;

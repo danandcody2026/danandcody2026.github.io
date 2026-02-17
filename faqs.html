@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cody & Danny Wedding</title>
-    <!-- We're using Tailwind CSS from a CDN for modern, responsive styling. -->
+    <title>FAQs - Cody & Danny Wedding</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using two fonts for a classic look, similar to your image. -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=Radley&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
@@ -47,43 +45,52 @@
         <div class="event-details-font text-sm md:text-base font-medium tracking-wider uppercase mb-1">
             13<sup>th</sup> JUNE 2026 • TREMEER FARM, FOWEY
         </div>
-        
-        <!-- Countdown section - Placeholder text for now -->
+
+        <!-- Countdown section -->
         <div id="countdown" class="countdown-blue text-sm md:text-base font-medium tracking-wider mb-12">
             Loading countdown...
         </div>
 
         <!-- Navigation bar with hover effect -->
         <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-12 pb-2">
-            <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Home</a>
+            <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Home</a>
             <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">What's the plan?</a>
-            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Registry of booze</a>
+            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Booze registry</a>
             <a href="logistics.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Logistics</a>
             <a href="accommodation.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Accommodation</a>
-            <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">FAQs</a>
+            <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">FAQs</a>
         </nav>
 
-        <!-- Welcome note -->
-        <div class="max-w-2xl mx-auto mb-10">
-            <h2 class="plan-heading text-xl md:text-2xl mb-4 tracking-wider">WELCOME!</h2>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed">
-                We can't wait to celebrate our wedding with you all September 4 &ndash; 7, 2026. If you find that you have any questions about the weekend after looking through this site, don't hesitate to shoot us a text or email, or call!
-            </p>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed mt-4">
-                While we already quietly had our legal ceremony at Bath Guildhall in December, we couldn't do the deed without hosting a party to celebrate with all our favourite humans!
-            </p>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed mt-4">
-                Plan for a weekend of hanging on a lawn/by the lake, chatting, eating, drinking, swimming, playing games, dancing, and relaxing. See you soon!
-            </p>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed mt-4">
-                Love,<br>Cody & Danny x
-            </p>
-        </div>
-
-        <!-- Main invite image -->
-        <div class="w-full flex justify-center">
-            <img src="assets/invite.jpg" alt="Wedding invite" class="invite-image rounded-lg">
-        </div>
+        <!-- FAQs section -->
+        <section id="faqs" class="py-12 px-2 md:px-0">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="plan-heading text-xl md:text-2xl mb-6 tracking-wider">FREQUENTLY ASKED QUESTIONS</h2>
+                <p class="plan-intro text-base mb-8 tracking-wide">Got questions? We've (hopefully) got answers. If not, give us a shout!</p>
+                <div class="text-left space-y-6">
+                    <!-- FAQ items — add or edit as needed -->
+                    <details class="faq-item border border-gray-300 rounded-lg p-5">
+                        <summary class="faq-question cursor-pointer font-semibold text-[#223c6c]">What should I wear?</summary>
+                        <p class="plan-text mt-3">Dress festively, but be prepared to dance. If wearing a suit & tie or power suit for
+the evening is your “festive,” go for it! If you’re more into a pants+sneakers+fun
+shirt, that works too. The same goes for dresses, jumpsuits, etc... Nothing is
+required, but lean colorful / fun / your “most complicated shirt.” At night it will get
+chillier, so bring a layer! </p>
+                    </details>
+                    <details class="faq-item border border-gray-300 rounded-lg p-5">
+                        <summary class="faq-question cursor-pointer font-semibold text-[#223c6c]">Can I bring a plus one?</summary>
+                        <p class="plan-text mt-3">More details coming soon!</p>
+                    </details>
+                    <details class="faq-item border border-gray-300 rounded-lg p-5">
+                        <summary class="faq-question cursor-pointer font-semibold text-[#223c6c]">Is there parking at the venue?</summary>
+                        <p class="plan-text mt-3">Yes! There is free parking available on site.</p>
+                    </details>
+                    <details class="faq-item border border-gray-300 rounded-lg p-5">
+                        <summary class="faq-question cursor-pointer font-semibold text-[#223c6c]">What if I have dietary requirements?</summary>
+                        <p class="plan-text mt-3">More details coming soon!</p>
+                    </details>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

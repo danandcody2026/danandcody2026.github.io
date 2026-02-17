@@ -90,3 +90,81 @@ $(document).on('click', 'a[href^="#"]', function (e) {
     }, 1000); // 1000ms matches a smooth scroll feel
   }
 });
+
+/********************** Global Invite Code System **********************/
+(function() {
+  // Invite code lists — update these with real codes later
+  var onsiteCodes  = ['1', '11', '111'];
+  var offsiteCodes = ['2', '22', '222'];
+  var allCodes = onsiteCodes.concat(offsiteCodes);
+
+  // Expose for accommodation page
+  window.INVITE_CODES = { onsite: onsiteCodes, offsite: offsiteCodes };
+
+  var overlay = document.getElementById('invite-overlay');
+  var badge   = document.getElementById('invite-badge');
+  if (!overlay || !badge) return; // safety check
+
+  var overlayInput = document.getElementById('overlay-invite-input');
+  var overlayBtn   = document.getElementById('overlay-invite-btn');
+  var overlayError = document.getElementById('overlay-invite-error');
+  var badgeCode    = document.getElementById('badge-code');
+  var badgeLogout  = document.getElementById('badge-logout');
+
+  function showSite(code) {
+    overlay.classList.add('hidden');
+    badge.classList.remove('hidden');
+    badgeCode.textContent = code;
+    document.body.style.overflow = '';
+  }
+
+  function validateAndStore(code) {
+    var trimmed = code.trim();
+    if (allCodes.indexOf(trimmed) !== -1) {
+      sessionStorage.setItem('inviteCode', trimmed);
+      showSite(trimmed);
+      // If on accommodation page, trigger its display
+      if (typeof window.showAccommodation === 'function') {
+        window.showAccommodation(trimmed);
+      }
+      return true;
+    }
+    return false;
+  }
+
+  // Check for existing code
+  var saved = sessionStorage.getItem('inviteCode');
+  if (saved && allCodes.indexOf(saved) !== -1) {
+    showSite(saved);
+  } else {
+    // Show overlay
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  overlayBtn.addEventListener('click', function() {
+    overlayError.classList.add('hidden');
+    if (!validateAndStore(overlayInput.value)) {
+      overlayError.classList.remove('hidden');
+    }
+  });
+
+  overlayInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') overlayBtn.click();
+  });
+
+  badgeLogout.addEventListener('click', function(e) {
+    e.preventDefault();
+    sessionStorage.removeItem('inviteCode');
+    overlay.classList.remove('hidden');
+    badge.classList.add('hidden');
+    overlayInput.value = '';
+    overlayError.classList.add('hidden');
+    document.body.style.overflow = 'hidden';
+    overlayInput.focus();
+    // If on accommodation page, reset its display
+    if (typeof window.resetAccommodation === 'function') {
+      window.resetAccommodation();
+    }
+  });
+})();

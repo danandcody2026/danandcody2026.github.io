@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cody & Danny Wedding</title>
-    <!-- We're using Tailwind CSS from a CDN for modern, responsive styling. -->
+    <title>What's the Plan? - Cody & Danny Wedding</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using two fonts for a classic look, similar to your image. -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=Radley&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
@@ -47,43 +45,54 @@
         <div class="event-details-font text-sm md:text-base font-medium tracking-wider uppercase mb-1">
             13<sup>th</sup> JUNE 2026 • TREMEER FARM, FOWEY
         </div>
-        
-        <!-- Countdown section - Placeholder text for now -->
+
+        <!-- Countdown section -->
         <div id="countdown" class="countdown-blue text-sm md:text-base font-medium tracking-wider mb-12">
             Loading countdown...
         </div>
 
         <!-- Navigation bar with hover effect -->
         <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-12 pb-2">
-            <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Home</a>
-            <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">What's the plan?</a>
-            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Registry of booze</a>
+            <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Home</a>
+            <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">What's the plan?</a>
+            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Booze registry</a>
             <a href="logistics.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Logistics</a>
             <a href="accommodation.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Accommodation</a>
             <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">FAQs</a>
         </nav>
 
-        <!-- Welcome note -->
-        <div class="max-w-2xl mx-auto mb-10">
-            <h2 class="plan-heading text-xl md:text-2xl mb-4 tracking-wider">WELCOME!</h2>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed">
-                We can't wait to celebrate our wedding with you all September 4 &ndash; 7, 2026. If you find that you have any questions about the weekend after looking through this site, don't hesitate to shoot us a text or email, or call!
-            </p>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed mt-4">
-                While we already quietly had our legal ceremony at Bath Guildhall in December, we couldn't do the deed without hosting a party to celebrate with all our favourite humans!
-            </p>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed mt-4">
-                Plan for a weekend of hanging on a lawn/by the lake, chatting, eating, drinking, swimming, playing games, dancing, and relaxing. See you soon!
-            </p>
-            <p class="plan-intro text-base md:text-base tracking-wide leading-relaxed mt-4">
-                Love,<br>Cody & Danny x
-            </p>
-        </div>
-
-        <!-- Main invite image -->
-        <div class="w-full flex justify-center">
-            <img src="assets/invite.jpg" alt="Wedding invite" class="invite-image rounded-lg">
-        </div>
+        <!-- What's the plan section -->
+        <section id="plan" class="plan-section py-16 px-2 md:px-0">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="plan-heading text-xl md:text-2xl mb-3 tracking-wider">WHAT'S THE PLAN?</h2>
+                <p class="plan-intro text-base md:text-base mb-6 tracking-wide">If we actually knew the plan, we'd tell you... but for now, here's a rough idea of what to expect:</p>
+                <div class="plan-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="plan-panel p-8 border border-gray-300 flex flex-col items-center text-center">
+                        <img src="assets/location.png" alt="Location icon" class="panel-icon mb-3" />
+                        <h3 class="plan-subheading text-2xl italic mb-4">Friday 12th June</h3>
+                        <p class="plan-text mb-4">Arrivals (from 4pm for those staying at Tremeer). Settle in, explore the grounds, and then get to work preparing and decorating! Rewarded with pizza, sauna and hot tub.</p>
+                    </div>
+                    <div class="plan-panel p-8 border border-gray-300 flex flex-col items-center text-center">
+                        <img src="assets/weekend.png" alt="The Weekend icon" class="panel-icon mb-3" />
+                        <h3 class="plan-subheading text-2xl italic mb-4">Saturday 13th June</h3>
+                        <p class="plan-text mb-2">The big day! Here's a rough idea of the schedule:</p>
+                        <ul class="plan-text text-left list-none space-y-1 mb-4">
+                            <li><strong>12:30pm</strong> &ndash; Arrivals at Tremeer Farm</li>
+                            <li><strong>1:00pm</strong> &ndash; Ceremony of sorts</li>
+                            <li><strong>2:00pm</strong> &ndash; Drinks &amp; mingle</li>
+                            <li><strong>3:30pm</strong> &ndash; Thai buffet opens</li>
+                            <li><strong>8:00pm</strong> &ndash; Pasties</li>
+                            <li><strong>12:00am</strong> &ndash; Curfew and taxis ruin the fun</li>
+                        </ul>
+                    </div>
+                    <div class="plan-panel p-8 border border-gray-300 flex flex-col items-center text-center">
+                        <img src="assets/accomodation.png" alt="Accommodation icon" class="panel-icon mb-3" />
+                        <h3 class="plan-subheading text-2xl italic mb-4">Sunday 14th June</h3>
+                        <p class="plan-text mb-4">Enjoy a laid-back day with friends and family. Take a dip in the sea, go for a walk, or just relax on the farm before heading home on Monday.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
