@@ -132,9 +132,13 @@ $(document).ready(function() {
                         '</div>' +
                         '<p class="dietary-error text-red-500 text-sm mt-1 hidden">Please select at least one option.</p>' +
                     '</div>' +
-                    '<div>' +
+                    '<div class="mb-4">' +
                         '<label class="block font-medium text-[#223c6c] mb-1">Anything else we should know?</label>' +
-                        '<textarea name="notes_' + n + '" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" placeholder="Song requests, questions, messages of love..."></textarea>' +
+                        '<textarea name="notes_' + n + '" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" placeholder="Questions, messages of love..."></textarea>' +
+                    '</div>' +
+                    '<div>' +
+                        '<label class="block font-medium text-[#223c6c] mb-1">What is one (or more) songs guaranteed to get you on the dance floor?</label>' +
+                        '<textarea name="songs_' + n + '" class="find-more-input w-full p-3 rounded border border-gray-300 song-field" rows="2" placeholder="e.g. Dancing Queen by ABBA"></textarea>' +
                     '</div>' +
                 '</div>' +
             '</div>';
@@ -199,14 +203,16 @@ $(document).ready(function() {
             }
             var dietary = dietaryParts.join(', ');
 
-            var notes = $card.find('textarea').val().trim();
+            var notes = $card.find('textarea[name^="notes"]').val().trim();
+            var songs = $card.find('textarea[name^="songs"]').val().trim();
 
             guests.push({
                 timestamp: timestamp,
                 names: name,
                 attending: attending,
                 dietary: dietary,
-                notes: notes
+                notes: notes,
+                songs: songs
             });
         });
 
