@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Cody & Danny Wedding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=Radley&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/yurt.png">
+</head>
+<body class="bg-[#FDFAF3]">
+    <!-- Invite code overlay -->
+    <div id="invite-overlay" class="invite-overlay hidden">
+        <div class="invite-overlay-box">
+            <img src="assets/yurt.png" alt="Yurt icon" class="yurt-icon mx-auto mb-4" />
+            <h2 class="header-font text-3xl md:text-4xl font-normal tracking-wide mb-2 text-[#223c6c]">CODY & DANNY</h2>
+            <p class="plan-intro text-base mb-6 tracking-wide">Please enter your invite code to continue.</p>
+            <input type="text" id="overlay-invite-input" class="find-more-input w-full max-w-xs p-3 rounded border border-gray-300 text-center text-lg tracking-widest mx-auto block" placeholder="Invite code" autocomplete="off">
+            <p id="overlay-invite-error" class="text-red-500 text-sm mt-2 hidden">Sorry, we don't recognise that code. Please try again.</p>
+            <button id="overlay-invite-btn" class="find-more-btn mt-4 px-6 py-3 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Enter</button>
+        </div>
+    </div>
+
+    <!-- Invite badge (top-right) -->
+    <div id="invite-badge" class="invite-badge hidden">
+        <span class="invite-badge-text">Logged in as guest: <span id="badge-code"></span>. <a href="#" id="badge-logout" class="invite-badge-logout">Not you?</a></span>
+    </div>
+
+    <div class="main-container px-4 md:px-6 lg:px-8 text-center py-10">
+        <!-- Yurt image above names -->
+        <div class="flex justify-center mb-4">
+            <a href="index.html"><img src="assets/yurt.png" alt="Yurt icon" class="yurt-icon" /></a>
+        </div>
+        <!-- Couple's names -->
+        <h1 class="header-font text-5xl md:text-6xl font-normal tracking-wide mb-4">
+            <a href="index.html" class="no-underline" style="text-decoration:none;color:inherit;">CODY & DANNY</a>
+        </h1>
+
+        <!-- Event details -->
+        <div class="event-details-font text-sm md:text-base font-medium tracking-wider uppercase mb-1">
+            13<sup>th</sup> JUNE 2026 • TREMEER FARM, FOWEY
+        </div>
+
+        <!-- Countdown section -->
+        <div id="countdown" class="countdown-blue text-sm md:text-base font-medium tracking-wider mb-12">
+            Loading countdown...
+        </div>
+
+        <!-- Navigation bar with hover effect -->
+        <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-12 pb-2">
+            <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Home</a>
+            <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">What's the plan?</a>
+            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Booze registry</a>
+            <a href="logistics.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Logistics</a>
+            <a href="accommodation.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Accommodation</a>
+            <a href="rsvp.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">RSVP</a>
+            <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">FAQs</a>
+        </nav>
+
+        <!-- RSVP section -->
+        <section id="rsvp" class="py-12 px-2 md:px-0">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="plan-heading text-xl md:text-2xl mb-4 tracking-wider">RSVP</h2>
+                <p class="plan-intro text-base mb-8 tracking-wide">Please let us know if you can make it! Fill in the form below for each guest in your group.</p>
+
+                <form id="rsvp-form" class="text-left space-y-6">
+
+                    <!-- Guest cards container -->
+                    <div id="guest-cards">
+                        <!-- Guest 1 (always present, cannot be removed) -->
+                        <div class="guest-card border border-gray-200 rounded-lg p-5 mb-6 bg-white" data-guest="1">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="plan-heading text-lg tracking-wider text-[#223c6c]">GUEST 1</h3>
+                            </div>
+
+                            <!-- Name -->
+                            <div class="mb-4">
+                                <label class="block font-medium text-[#223c6c] mb-1">Full name</label>
+                                <input type="text" name="guest_name" class="find-more-input w-full p-3 rounded border border-gray-300" placeholder="e.g. Jane Smith" required>
+                            </div>
+
+                            <!-- Attending? -->
+                            <div class="mb-4">
+                                <label class="block font-medium text-[#223c6c] mb-1">Will you be attending?</label>
+                                <div class="flex flex-row gap-4 mt-1">
+                                    <label class="inline-flex items-center text-[#223c6c]">
+                                        <input type="radio" name="attending_1" value="Yes" class="accent-[#223c6c] mr-1" required> Yes, can't wait!
+                                    </label>
+                                    <label class="inline-flex items-center text-[#223c6c]">
+                                        <input type="radio" name="attending_1" value="No" class="accent-[#223c6c] mr-1"> Sorry, can't make it
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Extra fields (only shown when attending Yes) -->
+                            <div class="guest-extra-fields hidden">
+                                <!-- Dietary requirements -->
+                                <div class="mb-4">
+                                    <label class="block font-medium text-[#223c6c] mb-1">Any dietary requirements or allergies? <span class="font-normal text-sm">(select at least one)</span></label>
+                                    <div class="dietary-options flex flex-col gap-2 mt-2">
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="None of the following" class="accent-[#223c6c] mr-2 dietary-none"> None of the following
+                                        </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="Vegan" class="accent-[#223c6c] mr-2 dietary-other-opt"> Vegan
+                                        </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="Nut allergy" class="accent-[#223c6c] mr-2 dietary-other-opt"> Nut allergy
+                                        </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="Gluten free" class="accent-[#223c6c] mr-2 dietary-other-opt"> Gluten free
+                                        </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="Celiac" class="accent-[#223c6c] mr-2 dietary-other-opt"> Celiac
+                                        </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="Soya bean allergy" class="accent-[#223c6c] mr-2 dietary-other-opt"> Soya bean allergy
+                                        </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="checkbox" name="dietary_1" value="Other" class="accent-[#223c6c] mr-2 dietary-other-opt dietary-other-check"> Other (please specify):
+                                        </label>
+                                        <input type="text" name="dietary_other_1" class="find-more-input w-full p-3 rounded border border-gray-300 ml-6 dietary-other-text" placeholder="Please specify...">
+                                    </div>
+                                    <p class="dietary-error text-red-500 text-sm mt-1 hidden">Please select at least one option.</p>
+                                </div>
+
+                                <!-- Anything else -->
+                                <div>
+                                    <label class="block font-medium text-[#223c6c] mb-1">Anything else we should know?</label>
+                                    <textarea name="notes_1" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" placeholder="Song requests, questions, messages of love..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add guest button -->
+                    <div class="text-center">
+                        <button type="button" id="add-guest-btn" class="px-6 py-3 rounded border-2 border-[#223c6c] text-[#223c6c] hover:bg-[#223c6c] hover:text-white transition font-medium tracking-wide">+ Add another guest</button>
+                    </div>
+
+                    <!-- Alert area -->
+                    <div id="rsvp-alert-wrapper"></div>
+
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="find-more-btn mt-2 px-8 py-3 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Submit RSVP</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

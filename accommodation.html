@@ -58,6 +58,7 @@
             <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Booze registry</a>
             <a href="logistics.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Logistics</a>
             <a href="accommodation.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Accommodation</a>
+            <a href="rsvp.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">RSVP</a>
             <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">FAQs</a>
         </nav>
 
@@ -75,24 +76,20 @@
                 <!-- Offsite content (hidden by default) -->
                 <div id="accom-offsite" class="hidden">
                     <h3 class="plan-subheading text-2xl italic mb-4">Staying Off-Site</h3>
-                    <p class="plan-intro text-base mb-6 tracking-wide">You'll be staying nearby rather than on the farm itself. More details about off-site accommodation options will appear here soon.</p>
+                    <p class="plan-intro text-base mb-6 tracking-wide">You'll be staying nearby rather than on the farm itself. We recommend booking sooner rather
+than later as Cornwall in summer is carnage...</p>
                 </div>
             </div>
         </section>
 
         <script>
-        // Accommodation page: show/reset based on global invite code
-        // Fallback code lists in case INVITE_CODES hasn't loaded yet
-        var _onsiteFallback  = ['1', '11', '111'];
-        var _offsiteFallback = ['2', '22', '222'];
-
-        window.showAccommodation = function(code) {
-            var codes = window.INVITE_CODES || { onsite: _onsiteFallback, offsite: _offsiteFallback };
+        // Accommodation page: show/reset based on guest type from API
+        window.showAccommodation = function(type) {
             document.getElementById('accom-onsite').classList.add('hidden');
             document.getElementById('accom-offsite').classList.add('hidden');
-            if (codes.onsite.indexOf(code) !== -1) {
+            if (type === 'onsite') {
                 document.getElementById('accom-onsite').classList.remove('hidden');
-            } else if (codes.offsite.indexOf(code) !== -1) {
+            } else if (type === 'offsite') {
                 document.getElementById('accom-offsite').classList.remove('hidden');
             }
         };
@@ -100,10 +97,15 @@
             document.getElementById('accom-onsite').classList.add('hidden');
             document.getElementById('accom-offsite').classList.add('hidden');
         };
-        // On page load, check if code already stored
+        // On page load, check if guest data already stored
         (function() {
-            var saved = sessionStorage.getItem('inviteCode');
-            if (saved) window.showAccommodation(saved);
+            var savedData = sessionStorage.getItem('guestData');
+            if (savedData) {
+                try {
+                    var data = JSON.parse(savedData);
+                    if (data.type) window.showAccommodation(data.type);
+                } catch(e) {}
+            }
         })();
         </script>
     </div>

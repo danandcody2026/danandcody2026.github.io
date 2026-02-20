@@ -57,6 +57,190 @@ $('#findoutmore-form').on('submit', function (e) {
             });
 });
 
+/********************** RSVP Multi-Guest Form **********************/
+$(document).ready(function() {
+    var guestCount = 1;
+
+    // Show/hide dietary + notes based on attending radio (delegated)
+    $('#rsvp-form').on('change', 'input[type="radio"]', function() {
+        var $card = $(this).closest('.guest-card');
+        var val = $card.find('input[type="radio"]:checked').val();
+        var $extra = $card.find('.guest-extra-fields');
+        if (val === 'Yes') {
+            $extra.slideDown(150).removeClass('hidden');
+        } else {
+            $extra.slideUp(150);
+            // Clear dietary selections when hiding
+            $card.find('.dietary-options input[type="checkbox"]').prop('checked', false);
+            $card.find('.dietary-other-text').val('');
+            $card.find('.dietary-error').addClass('hidden');
+        }
+    });
+
+    // Dietary checkbox mutual exclusivity (delegated for dynamic cards)
+    $('#rsvp-form').on('change', '.dietary-none', function() {
+        var $card = $(this).closest('.guest-card');
+        if ($(this).is(':checked')) {
+            $card.find('.dietary-other-opt').prop('checked', false);
+            $card.find('.dietary-other-text').val('');
+        }
+    });
+    $('#rsvp-form').on('change', '.dietary-other-opt', function() {
+        var $card = $(this).closest('.guest-card');
+        if ($(this).is(':checked')) {
+            $card.find('.dietary-none').prop('checked', false);
+        }
+    });
+
+    // Add guest button
+    $('#add-guest-btn').on('click', function() {
+        guestCount++;
+        var n = guestCount;
+        var cardHtml =
+            '<div class="guest-card border border-gray-200 rounded-lg p-5 mb-6 bg-white" data-guest="' + n + '">' +
+                '<div class="flex justify-between items-center mb-4">' +
+                    '<h3 class="plan-heading text-lg tracking-wider text-[#223c6c]">GUEST ' + n + '</h3>' +
+                    '<button type="button" class="remove-guest-btn text-red-400 hover:text-red-600 text-sm font-medium transition">Remove</button>' +
+                '</div>' +
+                '<div class="mb-4">' +
+                    '<label class="block font-medium text-[#223c6c] mb-1">Full name</label>' +
+                    '<input type="text" name="guest_name" class="find-more-input w-full p-3 rounded border border-gray-300" placeholder="e.g. John Smith" required>' +
+                '</div>' +
+                '<div class="mb-4">' +
+                    '<label class="block font-medium text-[#223c6c] mb-1">Will you be attending?</label>' +
+                    '<div class="flex flex-row gap-4 mt-1">' +
+                        '<label class="inline-flex items-center text-[#223c6c]">' +
+                            '<input type="radio" name="attending_' + n + '" value="Yes" class="accent-[#223c6c] mr-1" required> Yes, can\'t wait!' +
+                        '</label>' +
+                        '<label class="inline-flex items-center text-[#223c6c]">' +
+                            '<input type="radio" name="attending_' + n + '" value="No" class="accent-[#223c6c] mr-1"> Sorry, can\'t make it' +
+                        '</label>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="guest-extra-fields hidden">' +
+                    '<div class="mb-4">' +
+                        '<label class="block font-medium text-[#223c6c] mb-1">Any dietary requirements or allergies? <span class="font-normal text-sm">(select at least one)</span></label>' +
+                        '<div class="dietary-options flex flex-col gap-2 mt-2">' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="None of the following" class="accent-[#223c6c] mr-2 dietary-none"> None of the following</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="Vegan" class="accent-[#223c6c] mr-2 dietary-other-opt"> Vegan</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="Nut allergy" class="accent-[#223c6c] mr-2 dietary-other-opt"> Nut allergy</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="Gluten free" class="accent-[#223c6c] mr-2 dietary-other-opt"> Gluten free</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="Celiac" class="accent-[#223c6c] mr-2 dietary-other-opt"> Celiac</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="Soya bean allergy" class="accent-[#223c6c] mr-2 dietary-other-opt"> Soya bean allergy</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="checkbox" name="dietary_' + n + '" value="Other" class="accent-[#223c6c] mr-2 dietary-other-opt dietary-other-check"> Other (please specify):</label>' +
+                            '<input type="text" name="dietary_other_' + n + '" class="find-more-input w-full p-3 rounded border border-gray-300 ml-6 dietary-other-text" placeholder="Please specify...">' +
+                        '</div>' +
+                        '<p class="dietary-error text-red-500 text-sm mt-1 hidden">Please select at least one option.</p>' +
+                    '</div>' +
+                    '<div>' +
+                        '<label class="block font-medium text-[#223c6c] mb-1">Anything else we should know?</label>' +
+                        '<textarea name="notes_' + n + '" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" placeholder="Song requests, questions, messages of love..."></textarea>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+
+        $('#guest-cards').append(cardHtml);
+        renumberCards();
+    });
+
+    // Remove guest (delegated)
+    $('#guest-cards').on('click', '.remove-guest-btn', function() {
+        $(this).closest('.guest-card').remove();
+        renumberCards();
+    });
+
+    function renumberCards() {
+        $('#guest-cards .guest-card').each(function(i) {
+            $(this).find('h3').first().text('GUEST ' + (i + 1));
+        });
+    }
+
+    // Form submission — sends one POST per guest so each is a separate row
+    $('#rsvp-form').on('submit', function(e) {
+        e.preventDefault();
+
+        // Validate all cards first
+        var valid = true;
+        $('#guest-cards .guest-card').each(function() {
+            var $card = $(this);
+            var attending = $card.find('input[type="radio"]:checked').val();
+            // Only require dietary if attending
+            if (attending === 'Yes') {
+                var $checks = $card.find('.dietary-options input[type="checkbox"]:checked');
+                var $error = $card.find('.dietary-error');
+                if ($checks.length === 0) {
+                    $error.removeClass('hidden');
+                    valid = false;
+                } else {
+                    $error.addClass('hidden');
+                }
+            }
+        });
+        if (!valid) return;
+
+        // Collect guest data
+        var guests = [];
+        var timestamp = new Date().toISOString();
+        $('#guest-cards .guest-card').each(function() {
+            var $card = $(this);
+            var name = $card.find('input[name="guest_name"]').val().trim();
+            var attending = $card.find('input[type="radio"]:checked').val() || '';
+
+            // Build dietary
+            var dietaryParts = [];
+            $card.find('.dietary-options input[type="checkbox"]:checked').each(function() {
+                dietaryParts.push($(this).val());
+            });
+            var otherText = $card.find('.dietary-other-text').val().trim();
+            if ($card.find('.dietary-other-check').is(':checked') && otherText) {
+                dietaryParts = dietaryParts.map(function(v) {
+                    return v === 'Other' ? 'Other: ' + otherText : v;
+                });
+            }
+            var dietary = dietaryParts.join(', ');
+
+            var notes = $card.find('textarea').val().trim();
+
+            guests.push({
+                timestamp: timestamp,
+                names: name,
+                attending: attending,
+                dietary: dietary,
+                notes: notes
+            });
+        });
+
+        $('#rsvp-alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> Sending your RSVP...'));
+
+        // Send all guests as JSON
+        $.ajax({
+            url: 'https://script.google.com/macros/s/AKfycbwTe8PSs7fB3BM44_1LutloKVrA0TYdby0fPpLjHTn7J97LPP_0EoOz_eYd2lohPQr7/exec',
+            method: 'POST',
+            data: JSON.stringify({ guests: guests }),
+            contentType: 'text/plain',
+            dataType: 'json'
+        })
+        .done(function(response) {
+            console.log(response);
+            if (response.result === 'error') {
+                $('#rsvp-alert-wrapper').html(alert_markup('danger', response.message));
+            } else {
+                // Reset: remove extra cards, clear the first one
+                $('#guest-cards .guest-card:not(:first)').remove();
+                $('#rsvp-form')[0].reset();
+                $('#rsvp-alert-wrapper').html(alert_markup('success', '<strong>Thank you!</strong> Your RSVP has been received. We can\'t wait to celebrate with you!'));
+                setTimeout(function() {
+                    $('#rsvp-alert-wrapper').find('.p-4').fadeOut('slow');
+                }, 5000);
+            }
+        })
+        .fail(function(err) {
+            console.log(err);
+            $('#rsvp-alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Something went wrong. Please try again or contact us directly.'));
+        });
+    });
+});
+
 // Show/hide nights question based on tent/van selection
 $(document).ready(function() {
   // Hide the nights question on page load
@@ -93,13 +277,8 @@ $(document).on('click', 'a[href^="#"]', function (e) {
 
 /********************** Global Invite Code System **********************/
 (function() {
-  // Invite code lists — update these with real codes later
-  var onsiteCodes  = ['1', '11', '111'];
-  var offsiteCodes = ['2', '22', '222'];
-  var allCodes = onsiteCodes.concat(offsiteCodes);
-
-  // Expose for accommodation page
-  window.INVITE_CODES = { onsite: onsiteCodes, offsite: offsiteCodes };
+  // Validation endpoint — your Google Apps Script web app URL
+  var VALIDATE_URL = 'https://script.google.com/macros/s/AKfycbzjCHc-zirkJsiOUAL1xdxu6pwxiUK8J_LSiFUMH_HERgUECFyI5vyLgHDWPG3Yss7YfA/exec';
 
   var overlay = document.getElementById('invite-overlay');
   var badge   = document.getElementById('invite-badge');
@@ -111,31 +290,76 @@ $(document).on('click', 'a[href^="#"]', function (e) {
   var badgeCode    = document.getElementById('badge-code');
   var badgeLogout  = document.getElementById('badge-logout');
 
-  function showSite(code) {
+  function showSite(code, guestData) {
     overlay.classList.add('hidden');
     badge.classList.remove('hidden');
     badgeCode.textContent = code;
     document.body.style.overflow = '';
-  }
 
-  function validateAndStore(code) {
-    var trimmed = code.trim();
-    if (allCodes.indexOf(trimmed) !== -1) {
-      sessionStorage.setItem('inviteCode', trimmed);
-      showSite(trimmed);
-      // If on accommodation page, trigger its display
-      if (typeof window.showAccommodation === 'function') {
-        window.showAccommodation(trimmed);
-      }
-      return true;
+    // Store guest data for other pages
+    if (guestData) {
+      sessionStorage.setItem('guestData', JSON.stringify(guestData));
+      window.GUEST_DATA = guestData;
+      // Expose for accommodation page
+      window.INVITE_CODES = { onsite: 'onsite', offsite: 'offsite' };
     }
-    return false;
+
+    // Personalise welcome heading on home page
+    var data = guestData || JSON.parse(sessionStorage.getItem('guestData') || '{}');
+    var welcomeEl = document.getElementById('welcome-heading');
+    if (welcomeEl && data.guestName) {
+      welcomeEl.textContent = 'HEY ' + data.guestName.toUpperCase() + '!';
+    }
+
+    // If on accommodation page, trigger its display
+    if (typeof window.showAccommodation === 'function' && data.type) {
+      window.showAccommodation(data.type);
+    }
   }
 
-  // Check for existing code
+  function validateCode(code, callback) {
+    var trimmed = code.trim();
+    if (!trimmed) { callback(false); return; }
+
+    $.ajax({
+      url: VALIDATE_URL + '?code=' + encodeURIComponent(trimmed),
+      method: 'GET',
+      dataType: 'json'
+    })
+    .done(function(response) {
+      if (response.valid) {
+        var guestData = {
+          code: trimmed,
+          guestName: response.guestName,
+          type: response.type  // 'onsite' or 'offsite'
+        };
+        sessionStorage.setItem('inviteCode', trimmed);
+        sessionStorage.setItem('guestData', JSON.stringify(guestData));
+        showSite(trimmed, guestData);
+        callback(true);
+      } else {
+        callback(false);
+      }
+    })
+    .fail(function() {
+      callback(false);
+    });
+  }
+
+  // Check for existing session
   var saved = sessionStorage.getItem('inviteCode');
-  if (saved && allCodes.indexOf(saved) !== -1) {
-    showSite(saved);
+  var savedData = sessionStorage.getItem('guestData');
+  if (saved && savedData) {
+    try {
+      var data = JSON.parse(savedData);
+      showSite(saved, data);
+    } catch(e) {
+      // Invalid stored data, show overlay
+      sessionStorage.removeItem('inviteCode');
+      sessionStorage.removeItem('guestData');
+      overlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
   } else {
     // Show overlay
     overlay.classList.remove('hidden');
@@ -144,9 +368,15 @@ $(document).on('click', 'a[href^="#"]', function (e) {
 
   overlayBtn.addEventListener('click', function() {
     overlayError.classList.add('hidden');
-    if (!validateAndStore(overlayInput.value)) {
-      overlayError.classList.remove('hidden');
-    }
+    overlayBtn.disabled = true;
+    overlayBtn.textContent = 'Checking...';
+    validateCode(overlayInput.value, function(valid) {
+      overlayBtn.disabled = false;
+      overlayBtn.textContent = 'Enter';
+      if (!valid) {
+        overlayError.classList.remove('hidden');
+      }
+    });
   });
 
   overlayInput.addEventListener('keydown', function(e) {
@@ -156,6 +386,7 @@ $(document).on('click', 'a[href^="#"]', function (e) {
   badgeLogout.addEventListener('click', function(e) {
     e.preventDefault();
     sessionStorage.removeItem('inviteCode');
+    sessionStorage.removeItem('guestData');
     overlay.classList.remove('hidden');
     badge.classList.add('hidden');
     overlayInput.value = '';
