@@ -314,7 +314,7 @@ $(document).on('click', 'a[href^="#"]', function (e) {
     var data = guestData || JSON.parse(sessionStorage.getItem('guestData') || '{}');
     var welcomeEl = document.getElementById('welcome-heading');
     if (welcomeEl && data.guestName) {
-      welcomeEl.textContent = 'HEY ' + data.guestName.toUpperCase() + '!';
+        welcomeEl.textContent = 'Hey ' + data.guestName + '!';
     }
 
     // If on accommodation page, trigger its display
