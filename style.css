@@ -191,6 +191,18 @@ body {
     color: #223c6c;
 }
 
+/* Schedule table alignment */
+.schedule-table {
+    border-collapse: collapse;
+}
+.schedule-table td {
+    padding: 2px 0;
+    white-space: nowrap;
+}
+.schedule-table td:nth-child(2) {
+    padding: 2px 4px;
+}
+
 /* Find out more section styles */
 .find-more-section {
     background-color: #FDFAF3;
