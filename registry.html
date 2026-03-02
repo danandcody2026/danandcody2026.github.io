@@ -38,7 +38,7 @@
         </div>
         <!-- Couple's names -->
         <h1 class="header-font text-5xl md:text-6xl font-normal tracking-wide mb-4">
-            <a href="index.html" class="no-underline" style="text-decoration:none;color:inherit;">CODY & DANNY</a>
+            <a href="index.html" class="no-underline text-inherit">CODY & DANNY</a>
         </h1>
 
         <!-- Event details -->
@@ -64,43 +64,272 @@
 
         <!-- Registry section -->
         <section id="registry" class="registry-section py-12 px-2 md:px-0">
-            <div class="max-w-4xl mx-auto text-center">
-                <p class="mb-6 text-base md:text-base tracking-wide">We don't want gifts, but if you do want to contribute to the party, feel free to buy a bottle for behind the bar! Select a drink below to help stock the bar for everyone to enjoy.</p>
-                <div id="drinks-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"></div>
+            <div class="max-w-6xl mx-auto text-center">
+                <p class="mb-8 text-base md:text-base tracking-wide">We genuinely don't want gifts and absolutely don't expect anything. But if you're the type who insists, we'd much rather you help keep the bar stocked for everyone. Add what you fancy to the basket and checkout when you're ready.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left">
+                    <div class="lg:col-span-2">
+                        <div id="products-list" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+                    </div>
+                    <aside class="rounded-lg p-5 bg-white border border-gray-200 h-fit lg:sticky lg:top-6">
+                        <h3 class="text-lg font-semibold mb-4 text-[#223c6c]">Your basket</h3>
+                        <p id="basket-empty" class="text-sm opacity-70">Your basket is empty for now.</p>
+                        <div id="basket-items" class="space-y-3 mb-4"></div>
+                        <div class="border-t border-gray-200 pt-4 mt-2 space-y-1 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span>Items</span>
+                                <span id="basket-count">0</span>
+                            </div>
+                            <div class="flex items-center justify-between font-semibold text-base text-[#223c6c]">
+                                <span>Total</span>
+                                <span id="basket-total">£0.00</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button id="clear-basket" class="w-full px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">Clear basket</button>
+                            <a id="checkout-btn" href="#" target="_blank" rel="noopener noreferrer" class="block w-full text-center px-4 py-2 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Checkout</a>
+                        </div>
+                        <p class="text-xs opacity-70 mt-3">You'll be redirected to Monzo to complete payment securely.</p>
+                    </aside>
+                </div>
             </div>
         </section>
         <script>
-        // Drinks registry logic
-        const drinks = [
-            { name: 'Prosecco', price: 15, quantity: 5, bought: 0 },
-            { name: 'Red Wine', price: 12, quantity: 6, bought: 0 },
-            { name: 'White Wine', price: 12, quantity: 6, bought: 0 },
-            { name: 'Gin', price: 20, quantity: 2, bought: 0 },
-            { name: 'Whisky', price: 25, quantity: 2, bought: 0 },
-            { name: 'Rum', price: 20, quantity: 2, bought: 0 },
-            { name: 'Craft Beer (12-pack)', price: 18, quantity: 4, bought: 0 }
+        const PAYEES = [
+            { base: 'https://monzo.me/danielbeechey', h: 'LonNoz' },
+            { base: 'https://monzo.me/codyvarnish', h: 'jtBOVc' }
         ];
-        function renderDrinks() {
-            const list = document.getElementById('drinks-list');
-            if (!list) return;
-            list.innerHTML = drinks.map((drink, i) => {
-                const available = drink.quantity - drink.bought;
-                return `<div class="border rounded-lg p-6 flex flex-col items-center">
-                    <h3 class="text-lg font-semibold mb-2">${drink.name}</h3>
-                    <p class="mb-1">£${drink.price} per bottle</p>
-                    <p class="mb-2">Available: ${available} / ${drink.quantity}</p>
-                    ${available > 0 ? `<button class="buy-btn bg-[#223c6c] text-white px-4 py-2 rounded hover:bg-[#555]" onclick="buyDrink(${i})">Buy</button>` : `<span class="text-green-600 font-bold">Bought</span>`}
-                </div>`;
-            }).join('');
+        const MONZO_REFERENCE = 'wedding bar';
+        const BASKET_STORAGE_KEY = 'weddingBarBasket';
+
+        const categories = [
+            { key: 'spirits', label: 'Spirits & Liqueurs' },
+            { key: 'beer', label: 'Beer & Cider' },
+            { key: 'wine', label: 'Wine' }
+        ];
+
+        const products = [
+            { id: 'vodka', name: 'Vodka', subtitle: '70cl bottle', category: 'spirits', price: 17 },
+            { id: 'gin', name: 'Gin', subtitle: '70cl bottle', category: 'spirits', price: 17 },
+            { id: 'tequila', name: 'Tequila', subtitle: '70cl bottle', category: 'spirits', price: 22 },
+            { id: 'rum', name: 'Rum', subtitle: '70cl bottle', category: 'spirits', price: 18 },
+            { id: 'whiskey', name: 'Whiskey', subtitle: '70cl bottle', category: 'spirits', price: 21 },
+            { id: 'brandy', name: 'Brandy', subtitle: '70cl bottle', category: 'spirits', price: 26 },
+            { id: 'baileys', name: 'Baileys', subtitle: '70cl bottle', category: 'spirits', price: 16 },
+            { id: 'kahlua', name: 'Kahl\u00faa', subtitle: '70cl bottle', category: 'spirits', price: 15 },
+            { id: 'tequila-rose', name: 'Tequila Rose', subtitle: '70cl bottle', category: 'spirits', price: 16 },
+            { id: 'lager', name: 'Lager', subtitle: '12-pack', category: 'beer', price: 15 },
+            { id: 'craft-ale', name: 'Craft Ale', subtitle: '12-pack', category: 'beer', price: 20 },
+            { id: 'real-ale', name: 'Real Ale', subtitle: '12-pack', category: 'beer', price: 18 },
+            { id: 'guinness', name: 'Guinness', subtitle: '12-pack', category: 'beer', price: 16 },
+            { id: 'cider', name: 'Cider', subtitle: '12-pack', category: 'beer', price: 11 },
+            { id: 'zero-beer', name: '0% Beer', subtitle: '12-pack', category: 'beer', price: 11 },
+            { id: 'white-wine', name: 'White', subtitle: '750ml bottle', category: 'wine', price: 9 },
+            { id: 'rose-wine', name: 'Ros\u00e9', subtitle: '750ml bottle', category: 'wine', price: 9 },
+            { id: 'red-wine', name: 'Red', subtitle: '750ml bottle', category: 'wine', price: 9 },
+            { id: 'prosecco', name: 'Prosecco', subtitle: '750ml bottle', category: 'wine', price: 10 }
+        ];
+
+        let basket = {};
+
+        function formatCurrency(value) {
+            return `£${value.toFixed(2)}`;
         }
-        function buyDrink(idx) {
-            if (drinks[idx].bought < drinks[idx].quantity) {
-                drinks[idx].bought++;
-                renderDrinks();
-                alert(`Thank you for buying ${drinks[idx].name}!`);
+
+        function loadBasket() {
+            const saved = localStorage.getItem(BASKET_STORAGE_KEY);
+            if (!saved) {
+                basket = {};
+                return;
+            }
+            try {
+                basket = JSON.parse(saved) || {};
+            } catch {
+                basket = {};
             }
         }
-        document.addEventListener('DOMContentLoaded', renderDrinks);
+
+        function saveBasket() {
+            localStorage.setItem(BASKET_STORAGE_KEY, JSON.stringify(basket));
+        }
+
+        function getQuantity(productId) {
+            return basket[productId] || 0;
+        }
+
+        function getBasketCount() {
+            return Object.values(basket).reduce((sum, qty) => sum + qty, 0);
+        }
+
+        function getBasketTotal() {
+            return products.reduce((sum, product) => sum + (getQuantity(product.id) * product.price), 0);
+        }
+
+        function buildMonzoUrl(total) {
+            const amount = total.toFixed(2);
+            const payee = PAYEES[Math.random() < 0.5 ? 0 : 1];
+            const params = new URLSearchParams({
+                h: payee.h,
+                d: MONZO_REFERENCE
+            });
+            return `${payee.base}/${amount}?${params.toString()}`;
+        }
+
+        function addToBasket(productId) {
+            basket[productId] = getQuantity(productId) + 1;
+            saveBasket();
+            render();
+        }
+
+        function changeQuantity(productId, delta) {
+            const next = getQuantity(productId) + delta;
+            if (next <= 0) {
+                delete basket[productId];
+            } else {
+                basket[productId] = next;
+            }
+            saveBasket();
+            render();
+        }
+
+        function clearBasket() {
+            basket = {};
+            saveBasket();
+            render();
+        }
+
+        function renderProducts() {
+            const list = document.getElementById('products-list');
+            if (!list) return;
+
+            let html = '';
+            categories.forEach((cat) => {
+                const catProducts = products.filter(p => p.category === cat.key);
+                if (catProducts.length === 0) return;
+                html += `<div class="col-span-full">
+                    <h2 class="text-xl font-semibold text-[#223c6c] mt-4 mb-1 tracking-wide" style="font-family:'Cormorant Garamond',serif;">${cat.label}</h2>
+                    <hr class="border-[#223c6c]/20 mb-4">
+                </div>`;
+                html += catProducts.map((product) => {
+                    const inBasket = getQuantity(product.id);
+                    return `<div class="rounded-lg p-5 bg-white border border-gray-200 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-base font-semibold text-[#223c6c] mb-0.5">${product.name}</h3>
+                            <p class="text-sm italic text-[#8a9bbd] mb-1">${product.subtitle}</p>
+                            <p class="text-sm font-medium mb-4">${formatCurrency(product.price)}</p>
+                        </div>
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="text-xs opacity-60">${inBasket > 0 ? 'In basket: ' + inBasket : ''}</span>
+                            <button type="button" data-add-id="${product.id}" class="px-4 py-2 rounded bg-[#223c6c] text-white text-sm hover:bg-[#555] transition">Add</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            });
+            list.innerHTML = html;
+        }
+
+        function renderBasket() {
+            const itemsContainer = document.getElementById('basket-items');
+            const emptyMessage = document.getElementById('basket-empty');
+            const countNode = document.getElementById('basket-count');
+            const totalNode = document.getElementById('basket-total');
+            const checkoutButton = document.getElementById('checkout-btn');
+            const clearButton = document.getElementById('clear-basket');
+
+            const selectedProducts = products.filter((product) => getQuantity(product.id) > 0);
+            const count = getBasketCount();
+            const total = getBasketTotal();
+
+            countNode.textContent = String(count);
+            totalNode.textContent = formatCurrency(total);
+
+            if (selectedProducts.length === 0) {
+                emptyMessage.classList.remove('hidden');
+                itemsContainer.innerHTML = '';
+                checkoutButton.href = '#';
+                checkoutButton.classList.add('opacity-50', 'pointer-events-none');
+                checkoutButton.setAttribute('aria-disabled', 'true');
+                clearButton.disabled = true;
+                clearButton.classList.add('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            emptyMessage.classList.add('hidden');
+            itemsContainer.innerHTML = selectedProducts.map((product) => {
+                const quantity = getQuantity(product.id);
+                const subtotal = quantity * product.price;
+
+                return `<div class="rounded border border-gray-200 p-3">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <p class="font-medium text-sm text-[#223c6c]">${product.name}</p>
+                            <p class="text-xs opacity-70">${quantity} x ${formatCurrency(product.price)} = ${formatCurrency(subtotal)}</p>
+                        </div>
+                        <button type="button" data-remove-id="${product.id}" class="text-xs text-gray-600 hover:text-black">Remove</button>
+                    </div>
+                    <div class="mt-2 flex items-center gap-2">
+                        <button type="button" data-decrease-id="${product.id}" class="w-7 h-7 rounded border border-gray-300 text-sm">-</button>
+                        <span class="min-w-[1.5rem] text-center text-sm">${quantity}</span>
+                        <button type="button" data-increase-id="${product.id}" class="w-7 h-7 rounded border border-gray-300 text-sm">+</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            checkoutButton.href = buildMonzoUrl(total);
+            checkoutButton.classList.remove('opacity-50', 'pointer-events-none');
+            checkoutButton.removeAttribute('aria-disabled');
+            clearButton.disabled = false;
+            clearButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        function render() {
+            renderProducts();
+            renderBasket();
+        }
+
+        document.addEventListener('click', (event) => {
+            const addButton = event.target.closest('[data-add-id]');
+            if (addButton) {
+                addToBasket(addButton.getAttribute('data-add-id'));
+                return;
+            }
+
+            const increaseButton = event.target.closest('[data-increase-id]');
+            if (increaseButton) {
+                changeQuantity(increaseButton.getAttribute('data-increase-id'), 1);
+                return;
+            }
+
+            const decreaseButton = event.target.closest('[data-decrease-id]');
+            if (decreaseButton) {
+                changeQuantity(decreaseButton.getAttribute('data-decrease-id'), -1);
+                return;
+            }
+
+            const removeButton = event.target.closest('[data-remove-id]');
+            if (removeButton) {
+                changeQuantity(removeButton.getAttribute('data-remove-id'), -getQuantity(removeButton.getAttribute('data-remove-id')));
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBasket();
+            render();
+
+            const clearButton = document.getElementById('clear-basket');
+            clearButton.addEventListener('click', () => {
+                if (getBasketCount() === 0) return;
+                if (window.confirm('Clear your basket?')) {
+                    clearBasket();
+                }
+            });
+
+            const checkoutButton = document.getElementById('checkout-btn');
+            checkoutButton.addEventListener('click', (event) => {
+                if (getBasketCount() === 0) {
+                    event.preventDefault();
+                }
+            });
+        });
         </script>
     </div>
 
