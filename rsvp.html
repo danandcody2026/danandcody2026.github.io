@@ -66,7 +66,7 @@
             <div class="max-w-2xl mx-auto text-center">
                 <p class="plan-intro text-base mb-8 tracking-wide">Please let us know if you can make it! Fill in the form below for each guest in your group.</p>
 
-                <form id="rsvp-form" class="text-left space-y-6">
+                <form id="rsvp-form" class="text-left space-y-6" novalidate>
 
                     <!-- Guest cards container -->
                     <div id="guest-cards">
@@ -78,13 +78,13 @@
 
                             <!-- Name -->
                             <div class="mb-4">
-                                <label class="block font-medium text-[#223c6c] mb-1">Guest name</label>
+                                <label class="block font-medium text-[#223c6c] mb-1">Guest name <span class="text-red-500">*</span></label>
                                 <input type="text" name="guest_name" class="find-more-input w-full p-3 rounded border border-gray-300" placeholder="e.g. Jane Smith" required>
                             </div>
 
                             <!-- Attending? -->
                             <div class="mb-4">
-                                <label class="block font-medium text-[#223c6c] mb-1">Will you be attending?</label>
+                                <label class="block font-medium text-[#223c6c] mb-1">Will you be attending? <span class="text-red-500">*</span></label>
                                 <div class="flex flex-row gap-4 mt-1">
                                     <label class="inline-flex items-center text-[#223c6c]">
                                         <input type="radio" name="attending_1" value="Yes" class="accent-[#223c6c] mr-1" required> Yes, can't wait!
@@ -99,11 +99,8 @@
                             <div class="guest-extra-fields hidden">
                                 <!-- Dietary requirements -->
                                 <div class="mb-4">
-                                    <label class="block font-medium text-[#223c6c] mb-1">Any dietary requirements or allergies? <span class="font-normal text-sm">(select at least one)</span></label>
+                                    <label class="block font-medium text-[#223c6c] mb-1">Any dietary requirements or allergies? <span class="font-normal text-sm opacity-70">(optional)</span></label>
                                     <div class="dietary-options flex flex-col gap-2 mt-2">
-                                        <label class="inline-flex items-center text-[#223c6c]">
-                                            <input type="checkbox" name="dietary_1" value="None of the following" class="accent-[#223c6c] mr-2 dietary-none"> None of the following
-                                        </label>
                                         <label class="inline-flex items-center text-[#223c6c]">
                                             <input type="checkbox" name="dietary_1" value="Vegan" class="accent-[#223c6c] mr-2 dietary-other-opt"> Vegan
                                         </label>
@@ -122,37 +119,50 @@
                                         <label class="inline-flex items-center text-[#223c6c]">
                                             <input type="checkbox" name="dietary_1" value="Other" class="accent-[#223c6c] mr-2 dietary-other-opt dietary-other-check"> Other (please specify):
                                         </label>
-                                        <input type="text" name="dietary_other_1" class="find-more-input w-full p-3 rounded border border-gray-300 ml-6 dietary-other-text" placeholder="Please specify...">
+                                        <input type="text" name="dietary_other_1" class="find-more-input w-full p-3 rounded border border-gray-300 ml-6 dietary-other-text hidden" placeholder="Please specify...">
                                     </div>
-                                    <p class="dietary-error text-red-500 text-sm mt-1 hidden">Please select at least one option.</p>
                                 </div>
 
                                 <!-- Pasty flavour -->
                                 <div class="mb-4">
-                                    <label class="block font-medium text-[#223c6c] mb-1">What is your pasty of choice?</label>
+                                    <label class="block font-medium text-[#223c6c] mb-1">What is your pasty of choice? <span class="text-red-500">*</span></label>
                                     <div class="flex flex-col gap-2 mt-2">
                                         <label class="inline-flex items-center text-[#223c6c]">
-                                            <input type="radio" name="pasty_1" value="Steak" class="accent-[#223c6c] mr-2" required> Steak
+                                            <input type="radio" name="pasty_1" value="Steak" class="accent-[#223c6c] mr-2 pasty-flavour" required> Steak
                                         </label>
                                         <label class="inline-flex items-center text-[#223c6c]">
-                                            <input type="radio" name="pasty_1" value="Cheese & Onion" class="accent-[#223c6c] mr-2"> Cheese & Onion
+                                            <input type="radio" name="pasty_1" value="Cheese & Onion" class="accent-[#223c6c] mr-2 pasty-flavour"> Cheese & Onion
                                         </label>
                                         <label class="inline-flex items-center text-[#223c6c]">
-                                            <input type="radio" name="pasty_1" value="Vegetable" class="accent-[#223c6c] mr-2"> Vegetable
+                                            <input type="radio" name="pasty_1" value="Vegetable" class="accent-[#223c6c] mr-2 pasty-flavour"> Vegetable
                                         </label>
+                                        <label class="inline-flex items-center text-[#223c6c]">
+                                            <input type="radio" name="pasty_1" value="No pasty" class="accent-[#223c6c] mr-2 pasty-none"> No pasty
+                                        </label>
+                                    </div>
+                                    <div class="pasty-size-section mt-3 hidden">
+                                        <label class="block font-medium text-[#223c6c] mb-1">What size? <span class="text-red-500">*</span></label>
+                                        <div class="flex flex-row gap-4 mt-1">
+                                            <label class="inline-flex items-center text-[#223c6c]">
+                                                <input type="radio" name="pasty_size_1" value="Small" class="accent-[#223c6c] mr-2"> Small
+                                            </label>
+                                            <label class="inline-flex items-center text-[#223c6c]">
+                                                <input type="radio" name="pasty_size_1" value="Medium" class="accent-[#223c6c] mr-2"> Medium
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- Anything else -->
+                                <!-- Song request -->
                                 <div class="mb-4">
-                                    <label class="block font-medium text-[#223c6c] mb-1">Anything else we should know?</label>
-                                    <textarea name="notes_1" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" placeholder="Questions, messages of love..."></textarea>
+                                    <label class="block font-medium text-[#223c6c] mb-1">Any song requests for the dance floor?</label>
+                                    <textarea name="songs_1" class="find-more-input w-full p-3 rounded border border-gray-300 song-field" rows="2" title="Any song requests for the dance floor?"></textarea>
                                 </div>
 
-                                <!-- Song request -->
+                                <!-- Anything else -->
                                 <div>
-                                    <label class="block font-medium text-[#223c6c] mb-1">What is one (or more) songs guaranteed to get you on the dance floor?</label>
-                                    <textarea name="songs_1" class="find-more-input w-full p-3 rounded border border-gray-300 song-field" rows="2" placeholder="e.g. Dancing Queen by ABBA"></textarea>
+                                    <label class="block font-medium text-[#223c6c] mb-1">Anything else we should know?</label>
+                                    <textarea name="notes_1" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" title="Anything else we should know?"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -163,18 +173,50 @@
                         <button type="button" id="add-guest-btn" class="px-6 py-3 rounded border-2 border-[#223c6c] text-[#223c6c] hover:bg-[#223c6c] hover:text-white transition font-medium tracking-wide">+ Add another guest</button>
                     </div>
 
+                    <!-- Accommodation nights (onsite guests only) -->
+                    <div id="accom-section" class="hidden border border-gray-200 rounded-lg p-5 bg-white">
+                        <h3 class="plan-heading text-lg tracking-wider text-[#223c6c] mb-1">ACCOMMODATION</h3>
+                        <p class="onsite-copy mb-4">Which nights are you staying? <span class="text-red-500">*</span></p>
+                        <div class="flex flex-col gap-2 mb-4">
+                            <label class="inline-flex items-center text-[#223c6c]">
+                                <input type="checkbox" name="accom_night" value="Friday" class="accent-[#223c6c] mr-2 accom-night-check"> Friday 12th June
+                            </label>
+                            <label class="inline-flex items-center text-[#223c6c]">
+                                <input type="checkbox" name="accom_night" value="Saturday" class="accent-[#223c6c] mr-2 accom-night-check"> Saturday 13th June
+                            </label>
+                            <label class="inline-flex items-center text-[#223c6c]">
+                                <input type="checkbox" name="accom_night" value="Sunday" class="accent-[#223c6c] mr-2 accom-night-check"> Sunday 14th June
+                            </label>
+                        </div>
+                        <p id="accom-total-line" class="onsite-copy hidden">Total: <strong id="accom-cost-display"></strong></p>
+                    </div>
+
                     <!-- Alert area -->
                     <div id="rsvp-alert-wrapper"></div>
 
                     <!-- Submit -->
                     <div class="text-center">
-                        <button type="submit" class="find-more-btn mt-2 px-8 py-3 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Submit RSVP</button>
+                        <button type="submit" id="rsvp-submit-btn" class="find-more-btn mt-2 px-8 py-3 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Submit RSVP</button>
+                        <p id="rsvp-monzo-note" class="rsvp-accom-note hidden">You'll be redirected to Monzo to pay for accommodation. No account needed.</p>
                     </div>
                 </form>
             </div>
         </section>
+
         <div class="back-to-top-wrap">
             <button class="back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&uarr;</button>
+        </div>
+    </div>
+
+    <!-- RSVP confirmation modal (onsite guests) -->
+    <div id="rsvp-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/50" id="rsvp-modal-backdrop"></div>
+        <div class="relative bg-white rounded-lg shadow-xl p-8 max-w-sm mx-4 text-center">
+            <h2 class="rsvp-modal-title text-2xl font-bold mb-3">Almost there!</h2>
+            <p class="text-gray-600 mb-2">Your RSVP is ready to submit.</p>
+            <p class="text-gray-600 mb-6">Accommodation total: <strong id="modal-accom-total"></strong>. Monzo will open in a new tab to complete payment — no account needed.</p>
+            <button id="rsvp-modal-confirm" type="button" class="w-full px-4 py-2 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Submit RSVP &amp; Pay</button>
+            <button id="rsvp-modal-close" type="button" class="w-full mt-2 px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">Go back</button>
         </div>
     </div>
 

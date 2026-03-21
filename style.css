@@ -3,6 +3,12 @@
     color: #223c6c;
 }
 
+/* RSVP field error state */
+.rsvp-field-error {
+    border-left: 3px solid #ef4444;
+    padding-left: 0.75rem;
+}
+
 /********************** Global Invite Code Overlay **********************/
 .invite-overlay {
     position: fixed;
@@ -787,6 +793,16 @@ body {
 .registry-basket-title {
     font-family: 'GFS Didot', serif;
     letter-spacing: 0.08em;
+}
+.rsvp-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+}
+.rsvp-accom-note {
+    font-family: 'Radley', serif;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 0.75rem;
 }
 .registry-basket-empty {
     font-family: 'Radley', serif;
