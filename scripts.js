@@ -313,6 +313,12 @@ $(document).on('click', 'a[href^="#"]', function (e) {
     badgeCode.textContent = (guestData && guestData.guestName) ? guestData.guestName : code;
     document.body.style.overflow = '';
 
+    // Show/hide onsite-only content based on guest type
+    var type = (guestData && guestData.type) ? guestData.type : null;
+    document.querySelectorAll('.onsite-only').forEach(function(el) {
+      el.style.display = (type === 'onsite') ? '' : 'none';
+    });
+
     // Store guest data for other pages
     if (guestData) {
       sessionStorage.setItem('guestData', JSON.stringify(guestData));

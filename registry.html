@@ -55,7 +55,7 @@
         <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-6 pb-2">
             <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Home</a>
             <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Schedule</a>
-            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Booze registry</a>
+            <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Registry</a>
             <a href="accommodation.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Accommodation</a>
             <a href="rsvp.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">RSVP</a>
             <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">FAQs</a>
@@ -64,7 +64,7 @@
         <!-- Registry section -->
         <section id="registry" class="registry-section py-12 px-2 md:px-0">
             <div class="max-w-6xl mx-auto text-center">
-                <p class="mb-8 text-base md:text-base tracking-wide">We genuinely don't want gifts and absolutely don't expect anything. But if you're the type who insists, we'd much rather you help keep the bar stocked for everyone. Add what you fancy to the basket and checkout when you're ready.</p>
+                <p class="mb-8 text-base md:text-base tracking-wide">We genuinely don't want gifts (no, seriously... we mean it). Please don't feel any pressure here, but if you really can't resist, we'd much rather you made a small contribution to the bar. We made this page for a bit of fun: pick something you'd love to see at the party and it'll go into the communal mix for everyone to enjoy. The bar will be open regardless; nobody's buying their own round!</p>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left">
                     <div class="lg:col-span-2">
                         <div id="products-list" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
@@ -92,6 +92,18 @@
                 </div>
             </div>
         </section>
+
+        <!-- Thank you modal -->
+        <div id="thankyou-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+            <div class="absolute inset-0 bg-black/50" id="modal-backdrop"></div>
+            <div class="relative bg-white rounded-lg shadow-xl p-8 max-w-sm mx-4 text-center">
+                <h2 class="text-2xl font-bold mb-3" style="font-family: 'Playfair Display', serif;">Thank you!</h2>
+                <p class="text-gray-600 mb-6">We really appreciate it. You'll be redirected to Monzo to process the payment. No account needed.</p>
+                <button id="modal-continue" class="w-full px-4 py-2 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Continue to payment</button>
+                <button id="modal-close" class="w-full mt-2 px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">Go back</button>
+            </div>
+        </div>
+
         <script>
         const PAYEES = [
             { base: 'https://monzo.me/danielbeechey', h: 'LonNoz' },
@@ -216,8 +228,11 @@
                             <p class="text-sm italic text-[#8a9bbd] mb-1">${product.subtitle}</p>
                             <p class="text-sm font-medium mb-4">${formatCurrency(product.price)}</p>
                         </div>
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="text-xs opacity-60">${inBasket > 0 ? 'In basket: ' + inBasket : ''}</span>
+                        <div class="flex items-center justify-end gap-2">
+                            ${inBasket > 0
+                                ? `<button type="button" data-decrease-id="${product.id}" class="px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">Remove</button>
+                                   <span class="min-w-[1.5rem] text-center text-sm font-medium">${inBasket}</span>`
+                                : ''}
                             <button type="button" data-add-id="${product.id}" class="px-4 py-2 rounded bg-[#223c6c] text-white text-sm hover:bg-[#555] transition">Add</button>
                         </div>
                     </div>`;
@@ -317,17 +332,35 @@
             const clearButton = document.getElementById('clear-basket');
             clearButton.addEventListener('click', () => {
                 if (getBasketCount() === 0) return;
-                if (window.confirm('Clear your basket?')) {
-                    clearBasket();
-                }
+                clearBasket();
             });
 
             const checkoutButton = document.getElementById('checkout-btn');
+            const modal = document.getElementById('thankyou-modal');
+            const modalContinue = document.getElementById('modal-continue');
+            const modalClose = document.getElementById('modal-close');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+
             checkoutButton.addEventListener('click', (event) => {
-                if (getBasketCount() === 0) {
-                    event.preventDefault();
-                }
+                event.preventDefault();
+                if (getBasketCount() === 0) return;
+                modal.classList.remove('hidden');
             });
+
+            function closeModal() {
+                modal.classList.add('hidden');
+            }
+
+            modalContinue.addEventListener('click', () => {
+                const url = checkoutButton.href;
+                closeModal();
+                clearBasket();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.open(url, '_blank', 'noopener,noreferrer');
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            modalBackdrop.addEventListener('click', closeModal);
         });
         </script>
         <div class="back-to-top-wrap">
