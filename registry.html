@@ -64,14 +64,14 @@
         <!-- Registry section -->
         <section id="registry" class="registry-section py-12 px-2 md:px-0">
             <div class="max-w-6xl mx-auto text-center">
-                <p class="mb-8 text-base md:text-base tracking-wide">We genuinely don't want gifts (no, seriously... we mean it). Please don't feel any pressure here, but if you really can't resist, we'd much rather you made a small contribution to the bar. We made this page for a bit of fun: pick something you'd love to see at the party and it'll go into the communal mix for everyone to enjoy. The bar will be open regardless; nobody's buying their own round!</p>
+                <p class="mb-8 text-base md:text-base tracking-wide max-w-2xl mx-auto">We genuinely don't want gifts (no, seriously... we mean it). Please don't feel any pressure here, but if you really can't resist, we'd much rather you made a small contribution to the bar. We made this page for a bit of fun: pick something you'd love to see at the party and it'll go into the communal mix for everyone to enjoy. The bar will be open regardless; nobody's buying their own round!</p>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left">
                     <div class="lg:col-span-2">
-                        <div id="products-list" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+                        <div id="products-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                     </div>
-                    <aside class="rounded-lg p-5 bg-white border border-gray-200 h-fit lg:sticky lg:top-6">
-                        <h3 class="text-lg font-semibold mb-4 text-[#223c6c]">Your basket</h3>
-                        <p id="basket-empty" class="text-sm opacity-70">Your basket is empty for now.</p>
+                    <aside class="registry-basket-aside p-5 bg-white border border-gray-200 h-fit lg:sticky lg:top-6">
+                        <h3 class="registry-basket-title text-lg font-semibold mb-4 text-[#223c6c]">Your Basket</h3>
+                        <p id="basket-empty" class="registry-basket-empty text-sm">Nothing yet. The bar awaits.</p>
                         <div id="basket-items" class="space-y-3 mb-4"></div>
                         <div class="border-t border-gray-200 pt-4 mt-2 space-y-1 text-sm">
                             <div class="flex items-center justify-between">
@@ -113,31 +113,28 @@
         const BASKET_STORAGE_KEY = 'weddingBarBasket';
 
         const categories = [
-            { key: 'spirits', label: 'Spirits & Liqueurs' },
-            { key: 'beer', label: 'Beer & Cider' },
-            { key: 'wine', label: 'Wine' }
+            { key: 'spirits', label: 'Spirits & Liqueurs', emoji: '🥃' },
+            { key: 'beer', label: 'Beer & Cider', emoji: '🍺' },
+            { key: 'wine', label: 'Wine & Fizz', emoji: '🍷' }
         ];
 
         const products = [
-            { id: 'vodka', name: 'Vodka', subtitle: '70cl bottle', category: 'spirits', price: 17 },
-            { id: 'gin', name: 'Gin', subtitle: '70cl bottle', category: 'spirits', price: 17 },
-            { id: 'tequila', name: 'Tequila', subtitle: '70cl bottle', category: 'spirits', price: 22 },
-            { id: 'rum', name: 'Rum', subtitle: '70cl bottle', category: 'spirits', price: 18 },
-            { id: 'whiskey', name: 'Whiskey', subtitle: '70cl bottle', category: 'spirits', price: 21 },
-            { id: 'brandy', name: 'Brandy', subtitle: '70cl bottle', category: 'spirits', price: 26 },
-            { id: 'baileys', name: 'Baileys', subtitle: '70cl bottle', category: 'spirits', price: 16 },
-            { id: 'kahlua', name: 'Kahl\u00faa', subtitle: '70cl bottle', category: 'spirits', price: 15 },
-            { id: 'tequila-rose', name: 'Tequila Rose', subtitle: '70cl bottle', category: 'spirits', price: 16 },
-            { id: 'lager', name: 'Lager', subtitle: '12-pack', category: 'beer', price: 15 },
-            { id: 'craft-ale', name: 'Craft Ale', subtitle: '12-pack', category: 'beer', price: 20 },
-            { id: 'real-ale', name: 'Real Ale', subtitle: '12-pack', category: 'beer', price: 18 },
-            { id: 'guinness', name: 'Guinness', subtitle: '12-pack', category: 'beer', price: 16 },
-            { id: 'cider', name: 'Cider', subtitle: '12-pack', category: 'beer', price: 11 },
-            { id: 'zero-beer', name: '0% Beer', subtitle: '12-pack', category: 'beer', price: 11 },
-            { id: 'white-wine', name: 'White', subtitle: '750ml bottle', category: 'wine', price: 9 },
-            { id: 'rose-wine', name: 'Ros\u00e9', subtitle: '750ml bottle', category: 'wine', price: 9 },
-            { id: 'red-wine', name: 'Red', subtitle: '750ml bottle', category: 'wine', price: 9 },
-            { id: 'prosecco', name: 'Prosecco', subtitle: '750ml bottle', category: 'wine', price: 10 }
+            { id: 'vodka', name: 'Vodka', subtitle: '70cl bottle', category: 'spirits', price: 15, emoji: '🍹' },
+            { id: 'gin', name: 'Gin', subtitle: '70cl bottle', category: 'spirits', price: 15, emoji: '🍸' },
+            { id: 'tequila', name: 'Tequila', subtitle: '70cl bottle', category: 'spirits', price: 20, emoji: '🌵' },
+            { id: 'rum', name: 'Rum', subtitle: '70cl bottle', category: 'spirits', price: 15, emoji: '🏴‍☠️' },
+            { id: 'whiskey', name: 'Whiskey', subtitle: '70cl bottle', category: 'spirits', price: 20, emoji: '🥃' },
+            { id: 'baileys', name: 'Baileys', subtitle: '70cl bottle', category: 'spirits', price: 15, emoji: '🍀' },
+            { id: 'lager', name: 'Lager', subtitle: '12-pack', category: 'beer', price: 10, emoji: '🍺' },
+            { id: 'craft-ale', name: 'Craft Ale', subtitle: '12-pack', category: 'beer', price: 15, emoji: '🍺' },
+            { id: 'real-ale', name: 'Real Ale', subtitle: '12-pack', category: 'beer', price: 15, emoji: '🍺' },
+            { id: 'guinness', name: 'Guinness', subtitle: '12-pack', category: 'beer', price: 15, emoji: '🖤' },
+            { id: 'cider', name: 'Cider', subtitle: '12-pack', category: 'beer', price: 10, emoji: '🍎' },
+            { id: 'zero-beer', name: '0% Beer', subtitle: '12-pack', category: 'beer', price: 10, emoji: '🍺' },
+            { id: 'white-wine', name: 'White', subtitle: '750ml bottle', category: 'wine', price: 5, emoji: '🍷' },
+            { id: 'rose-wine', name: 'Ros\u00e9', subtitle: '750ml bottle', category: 'wine', price: 5, emoji: '🍷' },
+            { id: 'red-wine', name: 'Red', subtitle: '750ml bottle', category: 'wine', price: 5, emoji: '🍷' },
+            { id: 'prosecco', name: 'Prosecco', subtitle: '750ml bottle', category: 'wine', price: 5, emoji: '🥂' }
         ];
 
         let basket = {};
@@ -189,6 +186,11 @@
             basket[productId] = getQuantity(productId) + 1;
             saveBasket();
             render();
+            const card = document.querySelector(`[data-product-id="${productId}"]`);
+            if (card) {
+                card.classList.add('popping');
+                card.addEventListener('animationend', () => card.classList.remove('popping'), { once: true });
+            }
         }
 
         function changeQuantity(productId, delta) {
@@ -216,22 +218,23 @@
             categories.forEach((cat) => {
                 const catProducts = products.filter(p => p.category === cat.key);
                 if (catProducts.length === 0) return;
-                html += `<div class="col-span-full">
-                    <h2 class="text-xl font-semibold text-[#223c6c] mt-4 mb-1 tracking-wide" style="font-family:'Cormorant Garamond',serif;">${cat.label}</h2>
-                    <hr class="border-[#223c6c]/20 mb-4">
+                html += `<div class="col-span-full registry-category-header">
+                    <h2 class="registry-category-title">${cat.label}</h2>
                 </div>`;
                 html += catProducts.map((product) => {
                     const inBasket = getQuantity(product.id);
-                    return `<div class="rounded-lg p-5 bg-white border border-gray-200 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-base font-semibold text-[#223c6c] mb-0.5">${product.name}</h3>
-                            <p class="text-sm italic text-[#8a9bbd] mb-1">${product.subtitle}</p>
-                            <p class="text-sm font-medium mb-4">${formatCurrency(product.price)}</p>
+                    return `<div class="product-card ${inBasket > 0 ? 'in-basket' : ''}" data-category="${product.category}" data-product-id="${product.id}">
+                        <div class="product-card-accent"></div>
+                        <div class="product-card-body">
+                            <span class="product-emoji">${product.emoji}</span>
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-subtitle-text">${product.subtitle}</p>
+                            <p class="product-price">${formatCurrency(product.price)}</p>
                         </div>
-                        <div class="flex items-center justify-end gap-2">
+                        <div class="product-card-footer">
                             ${inBasket > 0
                                 ? `<button type="button" data-decrease-id="${product.id}" class="px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">Remove</button>
-                                   <span class="min-w-[1.5rem] text-center text-sm font-medium">${inBasket}</span>`
+                                   <span class="min-w-[1.5rem] text-center text-sm font-medium text-[#223c6c]">${inBasket}</span>`
                                 : ''}
                             <button type="button" data-add-id="${product.id}" class="px-4 py-2 rounded bg-[#223c6c] text-white text-sm hover:bg-[#555] transition">Add</button>
                         </div>

@@ -666,6 +666,136 @@ body {
     border: 1px solid #223c6c;
 }
 
+/* ==================== Registry redesign ==================== */
+
+.registry-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #223c6c;
+    letter-spacing: 0.08em;
+    margin: 0 0 1rem;
+    line-height: 1;
+}
+
+.registry-category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.75rem 0 1rem;
+}
+.registry-category-header::before,
+.registry-category-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(34, 60, 108, 0.2);
+}
+.registry-category-title {
+    font-family: 'GFS Didot', serif;
+    color: #223c6c;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(34,60,108,0.08);
+}
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06);
+}
+.product-card-accent {
+    height: 4px;
+    width: 100%;
+    flex-shrink: 0;
+}
+.product-card[data-category="spirits"] .product-card-accent { background: #223c6c; }
+.product-card[data-category="beer"] .product-card-accent { background: #7B5E3A; }
+.product-card[data-category="wine"] .product-card-accent { background: #6B3A4A; }
+
+.product-card.in-basket {
+    border-color: rgba(34,60,108,0.22);
+    box-shadow: 0 2px 12px rgba(34,60,108,0.1), 0 1px 4px rgba(34,60,108,0.06);
+}
+.product-card-body {
+    padding: 1.25rem 1.25rem 0.5rem;
+    text-align: center;
+    flex: 1;
+}
+.product-emoji {
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+.product-name {
+    font-family: 'GFS Didot', serif;
+    color: #223c6c;
+    font-size: 1.05rem;
+    margin: 0 0 0.2rem;
+    font-weight: normal;
+}
+.product-subtitle-text {
+    font-size: 0.8rem;
+    color: #8a9bbd;
+    font-style: italic;
+    margin: 0 0 0.35rem;
+    font-family: 'Radley', serif;
+}
+.product-price {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #223c6c;
+    margin: 0;
+    opacity: 0.7;
+}
+.product-card-footer {
+    padding: 0.75rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+@keyframes card-pop {
+    0%   { transform: scale(1) translateY(0); }
+    45%  { transform: scale(1.04) translateY(-3px); }
+    100% { transform: scale(1) translateY(0); }
+}
+.product-card.popping {
+    animation: card-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.registry-basket-aside {
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(34,60,108,0.07);
+}
+.registry-basket-title {
+    font-family: 'GFS Didot', serif;
+    letter-spacing: 0.08em;
+}
+.registry-basket-empty {
+    font-family: 'Radley', serif;
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* =========================================================== */
+
 @media (max-width: 900px) {
     .legal-gallery-grid {
         grid-template-columns: 1fr;
