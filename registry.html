@@ -357,6 +357,22 @@
             modalContinue.addEventListener('click', () => {
                 const url = checkoutButton.href;
                 closeModal();
+
+                const guestData = JSON.parse(sessionStorage.getItem('guestData') || '{}');
+                const payload = {
+                    code: guestData.code || sessionStorage.getItem('inviteCode') || 'unknown',
+                    name: guestData.guestName || '',
+                    items: products
+                        .filter(p => getQuantity(p.id) > 0)
+                        .map(p => ({ name: p.name, qty: getQuantity(p.id) })),
+                    total: getBasketTotal()
+                };
+                fetch('https://script.google.com/macros/s/AKfycbz3dgl4hBQqnqkIR5UrFvSemUmU0dC7KaHGbN14LDTahGnPb4rduUYOVDS2I7LMQHmCLg/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(payload)
+                }).catch(() => {}); // fire and forget — don't block the user
+
                 clearBasket();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.open(url, '_blank', 'noopener,noreferrer');
