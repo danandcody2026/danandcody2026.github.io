@@ -133,6 +133,14 @@ $(document).ready(function() {
                         '<p class="dietary-error text-red-500 text-sm mt-1 hidden">Please select at least one option.</p>' +
                     '</div>' +
                     '<div class="mb-4">' +
+                        '<label class="block font-medium text-[#223c6c] mb-1">What\'s your pasty flavour of choice?</label>' +
+                        '<div class="flex flex-col gap-2 mt-2">' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="radio" name="pasty_' + n + '" value="Steak" class="accent-[#223c6c] mr-2" required> Steak</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="radio" name="pasty_' + n + '" value="Cheese & Onion" class="accent-[#223c6c] mr-2"> Cheese & Onion</label>' +
+                            '<label class="inline-flex items-center text-[#223c6c]"><input type="radio" name="pasty_' + n + '" value="Vegetable" class="accent-[#223c6c] mr-2"> Vegetable</label>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="mb-4">' +
                         '<label class="block font-medium text-[#223c6c] mb-1">Anything else we should know?</label>' +
                         '<textarea name="notes_' + n + '" class="find-more-input w-full p-3 rounded border border-gray-300" rows="3" placeholder="Questions, messages of love..."></textarea>' +
                     '</div>' +
@@ -203,6 +211,7 @@ $(document).ready(function() {
             }
             var dietary = dietaryParts.join(', ');
 
+            var pasty = $card.find('input[name^="pasty"]:checked').val() || '';
             var notes = $card.find('textarea[name^="notes"]').val().trim();
             var songs = $card.find('textarea[name^="songs"]').val().trim();
 
@@ -211,6 +220,7 @@ $(document).ready(function() {
                 names: name,
                 attending: attending,
                 dietary: dietary,
+                pasty: pasty,
                 notes: notes,
                 songs: songs
             });
@@ -299,7 +309,8 @@ $(document).on('click', 'a[href^="#"]', function (e) {
   function showSite(code, guestData) {
     overlay.classList.add('hidden');
     badge.classList.remove('hidden');
-    badgeCode.textContent = code;
+    // Prefer guest name on the badge; fall back to the code if missing
+    badgeCode.textContent = (guestData && guestData.guestName) ? guestData.guestName : code;
     document.body.style.overflow = '';
 
     // Store guest data for other pages

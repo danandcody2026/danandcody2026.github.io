@@ -52,11 +52,10 @@
         </div>
 
         <!-- Navigation bar with hover effect -->
-        <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-12 pb-2">
+        <nav class="flex justify-center space-x-4 md:space-x-8 lg:space-x-12 mb-6 pb-2">
             <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Home</a>
-            <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">What's the plan?</a>
+            <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Schedule</a>
             <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Booze registry</a>
-            <a href="logistics.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Logistics</a>
             <a href="accommodation.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Accommodation</a>
             <a href="rsvp.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">RSVP</a>
             <a href="faqs.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">FAQs</a>
@@ -68,14 +67,88 @@
 
                 <!-- Onsite content (hidden by default) -->
                 <div id="accom-onsite" class="hidden">
-                    <h3 class="plan-subheading text-2xl italic mb-4">Staying On-Site</h3>
-                    <p class="plan-intro text-base mb-6 tracking-wide">Great news — you're staying at Tremeer Farm! More details about your on-site accommodation will appear here soon.</p>
+                    <div class="onsite-layout text-left">
+                        <h3 class="plan-subheading text-2xl italic mb-4 text-center">Staying On-Site at Tremeer Farm</h3>
+
+                        <div class="onsite-hero mb-8">
+                            <img src="assets/tremeer1.jpg" alt="Tremeer Farm with yurts and trees" class="onsite-hero-image" />
+                        </div>
+
+                        <div class="onsite-section mb-8">
+                            <h4 class="onsite-section-title">Welcome to the Farm!</h4>
+                            <div class="onsite-copy space-y-4">
+                                <p>We are absolutely over the moon that so many of you are joining us at Tremeer Farm for the whole weekend. Whether you are tucked up in the cottage, cosy in a yurt, pitching a tent, or rolling in your van, we cannot wait to share the space with you.</p>
+                                <p>Hopefully, by now, you already know exactly which rustic retreat is yours.</p>
+                            </div>
+                        </div>
+
+                        <div class="onsite-section mb-8">
+                            <h4 class="onsite-section-title">The Key Details</h4>
+                            <p class="onsite-copy mb-5">To make sure everyone has a smooth weekend, here are the essential logistics:</p>
+                            <div class="onsite-key-grid">
+                                <div class="onsite-key-card">
+                                    <p class="onsite-key-label">Arrival</p>
+                                    <p class="onsite-key-value">From 4:00 PM on Friday, 12th June 2026</p>
+                                </div>
+                                <div class="onsite-key-card">
+                                    <p class="onsite-key-label">Departure</p>
+                                    <p class="onsite-key-value">By 10:00 AM on Monday, 15th June</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="onsite-section mb-8">
+                            <h4 class="onsite-section-title">Friday Night Setup and Dinner</h4>
+                            <p class="onsite-copy">We are so grateful for everyone pitching in. As a huge thank you for your invaluable help setting up, decorating, and transforming the barn on Friday, we will be providing a proper dinner for the entire crew that evening.</p>
+                        </div>
+
+                        <div class="onsite-section mb-8">
+                            <h4 class="onsite-section-title">Life on the Farm</h4>
+                            <div class="onsite-detail-list">
+                                <div class="onsite-detail-item">
+                                    <p class="onsite-detail-label">Wifi</p>
+                                    <p class="onsite-copy">Yes, there is Wifi across the site if you need to connect.</p>
+                                </div>
+                                <div class="onsite-detail-item">
+                                    <p class="onsite-detail-label">For Yurt Guests</p>
+                                    <p class="onsite-copy">Each yurt comes complete with its own private hammock and firepit, which is ideal for a morning coffee or a late-night chat.</p>
+                                </div>
+                                <div class="onsite-detail-item">
+                                    <p class="onsite-detail-label">Communal Spaces</p>
+                                    <p class="onsite-copy">There are shared kitchen spaces available for everyone staying on site.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="onsite-section mb-8">
+                            <h4 class="onsite-section-title">A Note on Food and Drink</h4>
+                            <div class="onsite-copy space-y-4">
+                                <p>While we are providing Friday's dinner and will have basic breakfast provisions available on Saturday morning, you are very welcome to bring your own specific food bits to enjoy throughout the rest of the weekend.</p>
+                                <div class="onsite-rule-box">
+                                    <p class="onsite-rule-title">The Golden Fridge Rule</p>
+                                    <p>Please keep fridge-stored food to an absolute minimum. The shared fridges will be almost entirely prioritised for keeping the beer, cider, and pasties cold.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="onsite-section onsite-payment-section">
+                            <h4 class="onsite-section-title">Payment</h4>
+                            <div class="onsite-copy space-y-4">
+                                <p>To simplify things, we are handling the collection of accommodation fees directly, which we will then pay to the venue on your behalf.</p>
+                                <p><strong>The cost:</strong> £20 per person, per night.</p>
+                                <p><strong>What to do:</strong> Please transfer your total amount to the account details below, including <strong>ACCOM - [Your Name]</strong> as the reference.</p>
+                                <div class="onsite-bank-box">
+                                    <p>[INSERT BANK DETAILS: Account Holder / Sort Code / Account Number]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Offsite content (hidden by default) -->
                 <div id="accom-offsite" class="hidden">
                     <h3 class="plan-subheading text-2xl italic mb-4">Staying Off-Site</h3>
-                    <p class="plan-intro text-base mb-8 tracking-wide">You'll be staying nearby rather than on the farm itself. By now, we really hope you've got something booked &ndash; Cornwall in summer fills up fast and places will likely be snapped up by now! If you're still looking or struggling to find something, <strong>please get in touch with us</strong> and we'll do our best to help.</p>
+                    <p class="plan-intro text-base mb-8 tracking-wide">Sorry we could not accomodate you on the farm itself. By now, we really hope you've got something booked &ndash; Cornwall in summer fills up fast and places will likely be snapped up by now! If you're still looking or struggling to find something, <strong>please get in touch with us</strong> and we'll do our best to help. We have a couple of airbnbs reserved that are still up for grabs, and we have provided further suggestions below for anyone still looking.</p>
 
                     <!-- Thin decorative divider -->
                     <div class="flex items-center justify-center mb-10">
@@ -206,7 +279,7 @@
                     <div class="mb-6 max-w-2xl mx-auto rounded-lg p-6 bg-white shadow-sm border border-gray-100 text-center">
                         <p class="text-2xl mb-3">&#9875;</p>
                         <h4 class="plan-heading text-lg md:text-xl mb-3 tracking-wider">FERRY WARNING</h4>
-                        <p class="plan-intro text-base tracking-wide">Please be aware that the <strong>Fowey&ndash;Polruan</strong> and <strong>Fowey&ndash;Bodinnick</strong> ferries do not run through the night. If you're staying across the water and relying on the ferry, plan for a significantly longer drive home via the road route, and be sure to check the ferry timetables closer to the date!</p>
+                        <p class="plan-intro text-base tracking-wide">Please be aware that the <strong>Fowey&ndash;Polruan</strong> and <strong>Fowey&ndash;Bodinnick</strong> ferries do not run through the night. If you're staying across the estuary, plan for a significantly longer drive home in the evening and be sure to check the ferry timetables closer to the date!</p>
                     </div>
                 </div>
             </div>
@@ -238,6 +311,9 @@
             }
         })();
         </script>
+        <div class="back-to-top-wrap">
+            <button class="back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&uarr;</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
