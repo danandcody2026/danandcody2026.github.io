@@ -811,12 +811,6 @@ body {
 /* =========================================================== */
 
 @media (max-width: 900px) {
-    .legal-gallery-grid {
-        grid-template-columns: 1fr;
-        max-width: 440px;
-        margin: 0 auto;
-        gap: 0.9rem;
-    }
     .legal-photo {
         height: auto;
         object-fit: unset;
