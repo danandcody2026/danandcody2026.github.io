@@ -818,6 +818,7 @@ body {
         gap: 0.9rem;
     }
     .legal-photo {
-        height: 180px;
+        height: auto;
+        object-fit: unset;
     }
 }
