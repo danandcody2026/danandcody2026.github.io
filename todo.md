@@ -7,9 +7,10 @@
 - [ ] Review all pages for any remaining placeholder text or TBD details.
 
 ## Code / Housekeeping
-- [ ] **Remove unused files** — audit `assets/` and project root for files that are no longer referenced by any page and delete them.
-- [ ] **Remove unused code** — pass through HTML/CSS/JS to strip dead code, commented-out blocks, and unused styles.
-- [ ] `logistics.html` was deleted — confirm no remaining links to it across the site.
+- [x] **Remove unused files** — audited `assets/` and project root. Deleted `accomodation.png`, `location.png`, `weekend.png`, and `todo.txt`.
+- [x] **Remove unused code** — stripped dead JS (old email sign-up handler, camping form handler, unused scroll-to-top handler) and dead CSS classes (schedule, plan, wavy divider, venue directions, scroll-to-top, unused registry/onsite variants, etc.).
+- [x] `logistics.html` was deleted — confirmed no remaining links to it across the site.
+- [x] **Privacy audit** — removed hardcoded invite code `3606` from `scripts.js`. The complimentary accommodation price-line logic now checks whether the guest's cost is zero (from the API response) rather than matching a specific code in public JS.
 
 ## Features (post-launch)
 - [ ] Confirm Sunday beach BBQ details and update plan.html Sunday section.
