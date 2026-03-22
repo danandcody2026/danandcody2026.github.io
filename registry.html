@@ -53,7 +53,7 @@
         </div>
 
         <!-- Navigation bar with hover effect -->
-        <nav class="flex flex-wrap justify-center gap-x-4 md:gap-x-8 lg:gap-x-12 gap-y-2 mb-6 pb-2">
+        <nav class="grid grid-cols-3 gap-2 md:flex md:justify-center md:gap-x-8 lg:gap-x-12 mb-6 pb-2 text-center">
             <a href="index.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Home</a>
             <a href="plan.html" class="nav-link nav-link-blue text-sm md:text-base font-medium">Schedule</a>
             <a href="registry.html" class="nav-link nav-link-blue text-sm md:text-base font-medium active">Registry</a>
@@ -234,10 +234,10 @@
                         </div>
                         <div class="product-card-footer">
                             ${inBasket > 0
-                                ? `<button type="button" data-decrease-id="${product.id}" class="px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">Remove</button>
-                                   <span class="min-w-[1.5rem] text-center text-sm font-medium text-[#223c6c]">${inBasket}</span>`
-                                : ''}
-                            <button type="button" data-add-id="${product.id}" class="px-4 py-2 rounded bg-[#223c6c] text-white text-sm hover:bg-[#555] transition">Add</button>
+                                ? `<button type="button" data-decrease-id="${product.id}" class="px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50 transition">−</button>
+                                   <span class="min-w-[1.5rem] text-center text-sm font-medium text-[#223c6c]">${inBasket}</span>
+                                   <button type="button" data-add-id="${product.id}" class="px-4 py-2 rounded bg-[#223c6c] text-white text-sm hover:bg-[#555] transition">+</button>`
+                                : `<button type="button" data-add-id="${product.id}" class="px-4 py-2 rounded bg-[#223c6c] text-white text-sm hover:bg-[#555] transition">Add</button>`}
                         </div>
                     </div>`;
                 }).join('');
