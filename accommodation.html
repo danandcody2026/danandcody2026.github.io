@@ -19,7 +19,8 @@
         <div class="invite-overlay-box">
             <img src="assets/yurt.png" alt="Yurt icon" class="yurt-icon mx-auto mb-4" />
             <h2 class="header-font text-3xl md:text-4xl font-normal tracking-wide mb-2 text-[#223c6c]">CODY & DANNY</h2>
-            <p class="plan-intro text-base mb-6 tracking-wide">Please enter your invite code to continue.</p>
+            <p class="plan-intro text-base mb-1 tracking-wide">Please enter your invite code to continue.</p>
+            <p class="text-xs text-gray-400 mb-2 tracking-wide">(you can find this on your initial invitation)</p>
             <input type="text" id="overlay-invite-input" class="find-more-input w-full max-w-xs p-3 rounded border border-gray-300 text-center text-lg tracking-widest mx-auto block" placeholder="Invite code" autocomplete="off">
             <p id="overlay-invite-error" class="text-red-500 text-sm mt-2 hidden">Sorry, we don't recognise that code. Please try again.</p>
             <button id="overlay-invite-btn" class="find-more-btn mt-4 px-6 py-3 rounded bg-[#223c6c] text-white hover:bg-[#555] transition">Enter</button>
@@ -73,7 +74,7 @@
                             <img src="assets/tremeer1.jpg" alt="Tremeer Farm" class="onsite-hero-image" />
                         </div>
 
-                        <p class="onsite-copy mb-4 text-center">You're staying on-site at <a href="https://www.yurtscornwall.com/" target="_blank" rel="noopener noreferrer" class="faq-link">Tremeer Farm</a> for the weekend, a wildflower meadow site with yurts, a cottage, and tent pitches. Have a nosey at their <a href="https://www.airbnb.co.uk/rooms/7100862" target="_blank" rel="noopener noreferrer" class="faq-link">Airbnb listing</a> for the full picture.</p>
+                        <p class="onsite-copy mb-4 text-center">You're staying on-site at Tremeer Farm for the weekend, a wildflower meadow site with yurts, a cottage, and tent pitches. Have a nosey at their <a href="https://www.airbnb.co.uk/rooms/7100862" target="_blank" rel="noopener noreferrer" class="faq-link">Airbnb listings</a> and <a href="https://www.yurtscornwall.com/" target="_blank" rel="noopener noreferrer" class="faq-link">website</a> for the full picture.</p>
                         <p class="onsite-copy mb-8 text-center">It's worth packing sturdy shoes or wellies. The site has paths mown through a wildflower meadow, which can get a bit muddy if it's been raining.</p>
 
                         <div class="onsite-section mb-8">
@@ -95,30 +96,30 @@
                             <div class="onsite-key-grid">
                                 <div class="onsite-key-card">
                                     <p class="onsite-key-label">Bedding</p>
-                                    <p class="onsite-key-value">Bed linen, towels, extra pillows and blankets all included</p>
+                                    <p class="onsite-key-value">Bed linen, towels, extra pillows and blankets all included.</p>
                                 </div>
                                 <div class="onsite-key-card">
                                     <p class="onsite-key-label">Bathroom</p>
-                                    <p class="onsite-key-value">Hot showers, outdoor shower, soap and toilet paper provided</p>
+                                    <p class="onsite-key-value">Hot showers, outdoor cold water shower, soap and toilet paper provided.</p>
                                 </div>
                                 <div class="onsite-key-card">
                                     <p class="onsite-key-label">Kitchen</p>
-                                    <p class="onsite-key-value">Full kitchen with fridge, cooker, microwave, kettle, coffee maker, crockery, and BBQ</p>
+                                    <p class="onsite-key-value">Full kitchen with fridge, cooker, microwave, kettle, coffee maker, crockery, and BBQ.</p>
                                 </div>
                                 <div class="onsite-key-card">
                                     <p class="onsite-key-label">Outdoors</p>
-                                    <p class="onsite-key-value">Fire pits, hammocks, hot tub, sauna, outdoor dining area</p>
+                                    <p class="onsite-key-value">Fire pits, hammocks, hot tub, sauna, outdoor dining area.</p>
                                 </div>
                                 <div class="onsite-key-card">
                                     <p class="onsite-key-label">Connectivity</p>
                                     <p class="onsite-key-value">WiFi across the site</p>
                                 </div>
                                 <div class="onsite-key-card">
-                                    <p class="onsite-key-label">Saturday Morning</p>
-                                    <p class="onsite-key-value">We'll be providing breakfast on the morning of the wedding</p>
+                                    <p class="onsite-key-label">Food provided</p>
+                                    <p class="onsite-key-value">We will be providing pizza on Friday night, and breakfast on the morning of the wedding.</p>
                                 </div>
                             </div>
-                            <p class="onsite-copy mt-4 text-sm opacity-70">Just a heads up: there's no washing machine or tumble dryer on site.</p>
+                            <p class="onsite-copy mt-4 text-sm opacity-70">Just a heads up: there's no washing machine or tumble dryer on site. There are plenty of sockets in communal areas for campers wanting to charge devices.</p>
                         </div>
 
                         <div class="onsite-section mb-8">
@@ -128,7 +129,8 @@
 
                         <div class="onsite-section">
                             <h4 class="onsite-section-title">Payment</h4>
-                            <p class="onsite-copy">Accommodation is £20 per person, per night.</p>
+                            <p class="onsite-copy" id="accom-price-line">Accommodation is £20 per person, per night.</p>
+                            <p class="onsite-copy">Please make the accomodation payment when you complete your RSVP, so we can then pay the venue.</p>
                         </div>
 
                     </div>
@@ -149,7 +151,7 @@
                     <!-- Reserved Airbnbs -->
                     <div class="mb-12">
                         <h4 class="plan-heading text-lg md:text-xl mb-2 tracking-wider">AIRBNBS WE'VE RESERVED</h4>
-                        <p class="plan-intro text-base mb-6 tracking-wide">We've put holds on two Airbnbs near the venue &ndash; first come, first served, so get in quick if you're interested!</p>
+                        <p class="plan-intro text-base mb-6 tracking-wide">We've put holds on two Airbnbs within walking distance from the venue &ndash; first come, first served, so get in quick if you're interested!</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto mb-4">
                             <a href="https://www.airbnb.co.uk/rooms/24956917" target="_blank" rel="noopener noreferrer" class="group rounded-lg p-6 bg-white shadow-sm hover:shadow-md transition text-center block border border-gray-100">
                                 <span class="block text-2xl mb-2">&#127968;</span>
@@ -164,7 +166,7 @@
                                 <p class="text-sm text-blue-600 group-hover:underline">View on Airbnb &rarr;</p>
                             </a>
                         </div>
-                        <p class="plan-intro text-sm tracking-wide italic">Let us know if you'd like to book either of these and we'll sort it out!</p>
+                        <p class="plan-intro text-sm tracking-wide italic">Let us know if you'd like to take either of these and we'll sort it out!</p>
                     </div>
 
                     <!-- Divider -->
@@ -234,43 +236,11 @@
                         <span class="block w-16 border-t border-[#223c6c] opacity-30"></span>
                     </div>
 
-                    <!-- Nearby towns -->
-                    <div class="mb-12">
-                        <h4 class="plan-heading text-lg md:text-xl mb-2 tracking-wider">NEARBY TOWNS &amp; VILLAGES</h4>
-                        <p class="plan-intro text-base mb-6 tracking-wide">If you're looking for your own place, here are some nearby areas to search. Drive times are approximate from Tremeer Farm.</p>
-                        <div class="max-w-md mx-auto bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                            <table class="w-full text-base">
-                                <thead>
-                                    <tr class="border-b-2 border-[#223c6c] bg-[#223c6c] bg-opacity-5">
-                                        <th class="py-3 px-5 text-left font-semibold text-[#223c6c]">Location</th>
-                                        <th class="py-3 px-5 text-right font-semibold text-[#223c6c]">Drive time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="border-b border-gray-100"><td class="py-3 px-5">Bodinnick</td><td class="py-3 px-5 text-right">10 mins</td></tr>
-                                    <tr class="border-b border-gray-100 bg-gray-50 bg-opacity-50"><td class="py-3 px-5">Polruan</td><td class="py-3 px-5 text-right">10 mins</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-3 px-5">Polperro</td><td class="py-3 px-5 text-right">15 mins</td></tr>
-                                    <tr class="border-b border-gray-100 bg-gray-50 bg-opacity-50"><td class="py-3 px-5">Fowey</td><td class="py-3 px-5 text-right">15 mins with ferry, 40 mins without</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-3 px-5">Looe</td><td class="py-3 px-5 text-right">20 mins</td></tr>
-                                    <tr class="border-b border-gray-100 bg-gray-50 bg-opacity-50"><td class="py-3 px-5">Lostwithiel</td><td class="py-3 px-5 text-right">25 mins</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-3 px-5">Par</td><td class="py-3 px-5 text-right">35 mins</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Divider -->
-                    <div class="flex items-center justify-center mb-10">
-                        <span class="block w-16 border-t border-[#223c6c] opacity-30"></span>
-                        <span class="mx-3 text-[#223c6c] opacity-40 text-lg">&diams;</span>
-                        <span class="block w-16 border-t border-[#223c6c] opacity-30"></span>
-                    </div>
-
                     <!-- Ferry warning -->
                     <div class="mb-6 max-w-2xl mx-auto rounded-lg p-6 bg-white shadow-sm border border-gray-100 text-center">
                         <p class="text-2xl mb-3">&#9875;</p>
                         <h4 class="plan-heading text-lg md:text-xl mb-3 tracking-wider">FERRY WARNING</h4>
-                        <p class="plan-intro text-base tracking-wide">Please be aware that the <strong>Fowey&ndash;Polruan</strong> and <strong>Fowey&ndash;Bodinnick</strong> ferries do not run through the night. If you're staying across the estuary, plan for a significantly longer drive home in the evening and be sure to check the ferry timetables closer to the date!</p>
+                        <p class="plan-intro text-base tracking-wide">Please be aware that the <strong>Fowey&ndash;Polruan</strong> and <strong>Fowey&ndash;Bodinnick</strong> ferries do not run through the night. If you're staying across the estuary, plan for a significantly longer drive home in the evening and be sure to check the <a href="https://ctomsandson.co.uk/polruan-ferry/ferry-fares-and-timetables/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">ferry timetables</a> closer to the date!</p>
                     </div>
                 </div>
             </div>

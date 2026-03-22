@@ -499,6 +499,10 @@ $(document).on('click', 'a[href^="#"]', function (e) {
       el.style.display = (type === 'onsite') ? 'block' : 'none';
     });
 
+    // Hide accommodation price line for complimentary guests
+    var priceLine = document.getElementById('accom-price-line');
+    if (priceLine && code === '3606') priceLine.style.display = 'none';
+
     // Store guest data for other pages
     if (guestData) {
       sessionStorage.setItem('guestData', JSON.stringify(guestData));
@@ -533,7 +537,7 @@ $(document).on('click', 'a[href^="#"]', function (e) {
     var data = guestData || JSON.parse(sessionStorage.getItem('guestData') || '{}');
     var welcomeEl = document.getElementById('welcome-heading');
     if (welcomeEl && data.guestName) {
-        welcomeEl.textContent = 'Hey ' + data.guestName + '!';
+        welcomeEl.textContent = 'Hi ' + data.guestName + '!';
     }
 
     // If on accommodation page, trigger its display
@@ -561,8 +565,12 @@ $(document).on('click', 'a[href^="#"]', function (e) {
         };
         sessionStorage.setItem('inviteCode', trimmed);
         sessionStorage.setItem('guestData', JSON.stringify(guestData));
-        showSite(trimmed, guestData);
-        callback(true);
+        if (!window.location.pathname.endsWith('index.html') && window.location.pathname !== '/') {
+          window.location.href = 'index.html';
+        } else {
+          showSite(trimmed, guestData);
+          callback(true);
+        }
       } else {
         callback(false);
       }
