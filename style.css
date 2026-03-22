@@ -654,9 +654,3 @@ body {
 
 /* =========================================================== */
 
-@media (max-width: 900px) {
-    .legal-photo {
-        height: auto;
-        object-fit: unset;
-    }
-}
