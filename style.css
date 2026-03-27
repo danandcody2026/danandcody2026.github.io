@@ -440,6 +440,15 @@ body {
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
+.plan-text-disclaimer {
+    font-size: 1rem;
+    border: 1.5px solid #223c6c;
+    border-radius: 6px;
+    padding: 1.25rem 1.75rem;
+    text-align: justify;
+    text-align-last: center;
+    color: #223c6c;
+}
 .plan-text a:hover {
     color: #223c6c;
 }
